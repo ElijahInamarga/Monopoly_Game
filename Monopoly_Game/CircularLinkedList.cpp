@@ -209,8 +209,7 @@ void CircularLinkedList<T>::printList() {
         currentNode->data.print();
         if (currentNode != tailNode) {
             cout << "-->" << endl;
-        }
-        else {
+        } else {
             cout << endl;
         }
         currentNode = currentNode->nextNode;
