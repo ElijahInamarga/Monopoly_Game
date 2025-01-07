@@ -5,7 +5,7 @@
 
 using namespace std;
 
-template<typename T> struct Node {
+template<typename T> class Node {
 public:
     T data;
     Node* nextNode;
@@ -20,6 +20,7 @@ template <typename T> class CircularLinkedList {
 private:
     Node<T>* headNode;
     Node<T>* tailNode;
+
 public:
     CircularLinkedList();
     void insertAtHead(T newData);
@@ -36,4 +37,3 @@ public:
     int countNodes();
     void updateNodeValue(T value, T newValue);
 };
-
