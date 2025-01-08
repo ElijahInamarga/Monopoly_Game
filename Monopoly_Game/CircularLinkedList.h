@@ -29,11 +29,11 @@ public:
     void deleteAtHead();
     void deleteAtTail();
     void deleteAtPosition(int position);
-    bool search(T data);
-    void printList();
-    void printHeadNode();
-    void printLastNode();
-    bool isListEmpty();
-    int countNodes();
+    bool search(T data) const;
+    void printList() const;
+    void printHeadNode() const;
+    void printLastNode() const;
+    bool isListEmpty() const;
+    int countNodes() const;
     void updateNodeValue(T value, T newValue);
 };

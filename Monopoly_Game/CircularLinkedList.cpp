@@ -172,7 +172,7 @@ void CircularLinkedList<T>::deleteAtPosition(int position) {
 }
 
 template<typename T>
-bool CircularLinkedList<T>::search(T data) {
+bool CircularLinkedList<T>::search(T data) const {
     if(headNode == nullptr) {
         return false;
     }
@@ -189,7 +189,7 @@ bool CircularLinkedList<T>::search(T data) {
 }
 
 template<typename T>
-void CircularLinkedList<T>::printList() {
+void CircularLinkedList<T>::printList() const {
     if(headNode == nullptr) {
         return;
     }
@@ -207,7 +207,7 @@ void CircularLinkedList<T>::printList() {
 }
 
 template<typename T>
-void CircularLinkedList<T>::printHeadNode() {
+void CircularLinkedList<T>::printHeadNode() const {
     if(headNode == nullptr) {
         return;
     }
@@ -216,7 +216,7 @@ void CircularLinkedList<T>::printHeadNode() {
 }
 
 template<typename T>
-void CircularLinkedList<T>::printLastNode() {
+void CircularLinkedList<T>::printLastNode() const {
     if(headNode == nullptr) {
         return;
     }
@@ -225,7 +225,7 @@ void CircularLinkedList<T>::printLastNode() {
 }
 
 template<typename T>
-bool CircularLinkedList<T>::isListEmpty() {
+bool CircularLinkedList<T>::isListEmpty() const {
     if(headNode == nullptr) {
         return true;
     }
@@ -233,7 +233,7 @@ bool CircularLinkedList<T>::isListEmpty() {
 }
 
 template<typename T>
-int CircularLinkedList<T>::countNodes() {
+int CircularLinkedList<T>::countNodes() const {
     if(headNode == nullptr) {
         return 0;
     }
