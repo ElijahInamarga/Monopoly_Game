@@ -6,10 +6,11 @@
 using namespace std;
 
 class Property {
-public:
+private:
     string propertyName;
     int value;
 
+public:
     Property();
     Property(string propertyName, int value);
     bool isEqual(Property other) const;
