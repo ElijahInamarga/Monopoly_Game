@@ -1,24 +1,23 @@
 #include "Property.h"
 
-Property::Property() {}
+Property::Property() {
+    this->propertyName = "NULL";
+    this->value = NULL;
+}
 
-Property::Property(string propertyName, string propertyColor, int value, int rent) {
+Property::Property(string propertyName, int value) {
     this->propertyName = propertyName;
-    this->propertyColor = propertyColor;
     this->value = value;
-    this->rent = rent;
 }
 
 bool Property::isEqual(Property other) const {
     if (other.propertyName == this->propertyName
-        && other.propertyColor == this->propertyColor
-        && other.value == this->value
-        && other.rent == this->rent) {
+        && other.value == this->value) {
         return true;
     }
     return false;
 }
 
 void Property::print() const {
-    cout << "[Name: " + propertyName << ", Color: " + propertyColor << ", Value: " << value << ", Rent: " << rent << "]";
+    cout << "[Name: " + propertyName << ", Value: " << value << "]";
 }
