@@ -49,7 +49,6 @@ void CircularLinkedList<T>::insertAtPosition(T newData, int position) {
 
     // Invalid position
     if(position < 1) {
-        cout << "Invalid position" << endl;
         return;
     }
 
@@ -70,7 +69,6 @@ void CircularLinkedList<T>::insertAtPosition(T newData, int position) {
 
     // Empty list
     if(headNode == nullptr) {
-        cout << "Invalid position" << endl;
         return;
     }
 
@@ -78,7 +76,6 @@ void CircularLinkedList<T>::insertAtPosition(T newData, int position) {
     for(int i = 0; i < position - 2; i++) {
         currentNode = currentNode->nextNode;
         if(currentNode == headNode) {
-            cout << "Invalid position" << endl;
             return;
         }
     }
@@ -93,7 +90,6 @@ template<typename T>
 void CircularLinkedList<T>::deleteAtHead() {
     // Empty list
     if(headNode == nullptr) {
-        cout << "Can't delete head of empty list" << endl;
         return;
     }
 
@@ -116,7 +112,6 @@ template<typename T>
 void CircularLinkedList<T>::deleteAtTail() {
     // List is empty
     if(headNode == nullptr) {
-        cout << "List is empty" << endl;
         return;
     }
 
@@ -143,13 +138,11 @@ template<typename T>
 void CircularLinkedList<T>::deleteAtPosition(int position) {
     // Invalid position
     if(position < 1) {
-        cout << "Invalid position" << endl;
         return;
     }
 
     // Empty list
     if(headNode == nullptr) {
-        cout << "Invalid position" << endl;
         return;
     }
 
@@ -163,7 +156,6 @@ void CircularLinkedList<T>::deleteAtPosition(int position) {
     for(int i = 0; i < position - 2; i++) {
         currentNode = currentNode->nextNode;
         if(currentNode == tailNode) {
-            cout << "Invalid position" << endl;
             return;
         }
     }
@@ -182,7 +174,6 @@ void CircularLinkedList<T>::deleteAtPosition(int position) {
 template<typename T>
 bool CircularLinkedList<T>::search(T data) {
     if(headNode == nullptr) {
-        cout << "Can't search empty list" << endl;
         return false;
     }
 
@@ -200,7 +191,6 @@ bool CircularLinkedList<T>::search(T data) {
 template<typename T>
 void CircularLinkedList<T>::printList() {
     if(headNode == nullptr) {
-        cout << "Can't print empty list" << endl;
         return;
     }
 
@@ -219,7 +209,6 @@ void CircularLinkedList<T>::printList() {
 template<typename T>
 void CircularLinkedList<T>::printHeadNode() {
     if(headNode == nullptr) {
-        cout << "Cant print the head node of an empty list" << endl;
         return;
     }
     headNode->data.print();
@@ -229,7 +218,6 @@ void CircularLinkedList<T>::printHeadNode() {
 template<typename T>
 void CircularLinkedList<T>::printLastNode() {
     if(headNode == nullptr) {
-        cout << "Cant print the last node of an empty list" << endl;
         return;
     }
     tailNode->data.print();
@@ -262,7 +250,6 @@ int CircularLinkedList<T>::countNodes() {
 template<typename T>
 void CircularLinkedList<T>::updateNodeValue(T value, T newValue) {
     if(headNode == nullptr) {
-        cout << "Can't update a node of an empty list" << endl;
         return;
     }
 
