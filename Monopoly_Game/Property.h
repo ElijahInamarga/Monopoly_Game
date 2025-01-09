@@ -8,7 +8,7 @@ class Property {
 private:
     string propertyName;
     int value;
-
+    bool bought;
 public:
     Property();
     Property(string propertyName, int value);
@@ -16,5 +16,6 @@ public:
     void print() const;
     string getName();
     int getValue();
+    bool isBought();
 };
 

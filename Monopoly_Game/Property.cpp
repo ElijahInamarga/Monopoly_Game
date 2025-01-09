@@ -29,3 +29,7 @@ string Property::getName() {
 int Property::getValue() {
     return this->value;
 }
+
+bool Property::isBought() {
+    return bought;
+}
