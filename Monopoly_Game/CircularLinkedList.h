@@ -19,7 +19,7 @@ public:
     void deleteAtHead();
     void deleteAtTail();
     void deleteAtPosition(int position);
-    bool search(T data) const;
+    int search(T data) const;
     void printList() const;
     void printHeadNode() const;
     void printLastNode() const;

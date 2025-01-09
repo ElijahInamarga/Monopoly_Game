@@ -9,5 +9,9 @@ public:
         data = value;
         nextNode = nullptr;
     }
+
+    ~Node() {
+        delete nextNode;
+    }
 };
 

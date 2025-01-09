@@ -62,31 +62,42 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->player4Text->hide();
     slotsList[0]->setText("Start");
 
-    for (int i = 1; i < numOfProperties; i++) {
+    for(int i = 1; i < numOfProperties; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
         QString propertyValue = QString::number(propertyList[i]->getValue());
         QString str = propertyName + "\n\nPrice: $" + propertyValue;
         slotsList[i]->setText(str);
     }
+
+    currentPlayer = nullptr;
 }
 
 Monopoly_Game::~Monopoly_Game() {
     delete ui;
 
     // Delete properties 
-    for (int i = 0; i < numOfProperties; i++) {
+    for(int i = 0; i < numOfProperties; i++) {
         delete propertyList[i];
     }
      
     // Delete ui elements
-    for (int i = 0; i < numOfSlots; i++) {
+    for(int i = 0; i < numOfSlots; i++) {
         delete slotsList[i];
+    }
+
+    // Delete players
+    for(int i = 0; i < numOfPlayers; i++) {
+        delete playerList[i];
+    }
+
+    for (int i = 0; i < 4; i++) {
+        delete playerTextboxList[i];
     }
 }
 
 // Before game begins
 void Monopoly_Game::on_inputGo_clicked() {
-    std::string listOfColors[] = {"blue", "red", "green", "yellow"};
+    std::string listOfColors[] = {"blue", "red", "green", "orange"};
 
     ui->inputGo->hide();
     ui->inputSelection->hide();
@@ -94,14 +105,36 @@ void Monopoly_Game::on_inputGo_clicked() {
 
     // Initialize list of players and reveal appropriate player text boxes
     numOfPlayers = (ui->inputSelection->currentIndex()) + 1;
-    for (int i = 0; i < numOfPlayers; i++) {
-        std::string str = "Player " + std::to_string(i + 1) + " rolls!";
+    for(int i = 0; i < numOfPlayers; i++) {
+        std::string str = "Player " + std::to_string(i + 1);
         playerList.push_back(new Player(str, listOfColors[i], board.getHeadNode()));
+
+        // Intialize player text boxes
+        QString playerName = QString::fromStdString(playerList[i]->name);
+        QString playerBudget = QString::number(playerList[i]->budget);
+        playerTextboxList[i]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n");
+        
+        QString playerTextBoxColor = QString::fromStdString(playerList[i]->color);
+        playerTextboxList[i]->setStyleSheet("background-color: " + playerTextBoxColor + ";");
         playerTextboxList[i]->show();
     }
 
-    QString str = QString::fromStdString(playerList[0]->name);
+    currentPlayer = playerList[0];
+    QString str = QString::fromStdString(currentPlayer->name + " rolls!");
     ui->playerRollText->setText(str);
     ui->playerRollText->show();
     ui->rollButton->show();
+}
+
+void Monopoly_Game::on_rollButton_clicked() {
+    // First roll click
+    std::srand(std::time(nullptr));
+    int randomValue = std::rand() % 12 + 1;
+    ui->rollButton->hide();
+    ui->playerRollText->hide();
+
+    // Move player based
+    for (int i = 0; i < randomValue; i++) {
+        currentPlayer->position = currentPlayer->position->nextNode;
+    }
 }

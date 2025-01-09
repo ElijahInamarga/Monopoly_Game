@@ -12,7 +12,7 @@ template<typename T> void CircularLinkedList<T>::insertAtHead(T newData) {
     Node<T>* newNode = new Node<T>(newData);
 
     // Empty list
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         headNode = newNode;
         tailNode = newNode;
         newNode->nextNode = newNode;
@@ -30,7 +30,7 @@ template<typename T> void CircularLinkedList<T>::insertAtTail(T newData) {
     Node<T>* newNode = new Node<T>(newData);
 
     // Empty list
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         headNode = newNode;
         tailNode = newNode;
         newNode->nextNode = newNode;
@@ -47,13 +47,13 @@ template<typename T> void CircularLinkedList<T>::insertAtPosition(T newData, int
     Node<T>* newNode = new Node<T>(newData);
 
     // Invalid position
-    if (position < 1) {
+    if(position < 1) {
         return;
     }
 
     // Insert at head
-    if (position == 1) {
-        if (headNode == nullptr) {
+    if(position == 1) {
+        if(headNode == nullptr) {
             headNode = newNode;
             tailNode = newNode;
             newNode->nextNode = newNode;
@@ -67,32 +67,32 @@ template<typename T> void CircularLinkedList<T>::insertAtPosition(T newData, int
     }
 
     // Empty list
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
 
     Node<T>* currentNode = headNode;
-    for (int i = 0; i < position - 2; i++) {
+    for(int i = 0; i < position - 2; i++) {
         currentNode = currentNode->nextNode;
-        if (currentNode == headNode) {
+        if(currentNode == headNode) {
             return;
         }
     }
     newNode->nextNode = currentNode->nextNode;
     currentNode->nextNode = newNode;
-    if (newNode->nextNode == headNode) {
+    if(newNode->nextNode == headNode) {
         tailNode = newNode;
     }
 }
 
 template<typename T> void CircularLinkedList<T>::deleteAtHead() {
     // Empty list
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
 
     // List only has one element
-    if (headNode == tailNode) {
+    if(headNode == tailNode) {
         Node<T>* temp = headNode;
         headNode = nullptr;
         tailNode = nullptr;
@@ -108,12 +108,12 @@ template<typename T> void CircularLinkedList<T>::deleteAtHead() {
 
 template<typename T> void CircularLinkedList<T>::deleteAtTail() {
     // List is empty
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
 
     // List only has one element
-    if (headNode == tailNode) {
+    if(headNode == tailNode) {
         Node<T>* temp = headNode;
         headNode = nullptr;
         tailNode = nullptr;
@@ -123,7 +123,7 @@ template<typename T> void CircularLinkedList<T>::deleteAtTail() {
 
     Node<T>* temp = tailNode;
     Node<T>* currentNode = headNode;
-    while (currentNode->nextNode != tailNode) {
+    while(currentNode->nextNode != tailNode) {
         currentNode = currentNode->nextNode;
     }
     currentNode->nextNode = headNode;
@@ -133,31 +133,31 @@ template<typename T> void CircularLinkedList<T>::deleteAtTail() {
 
 template<typename T> void CircularLinkedList<T>::deleteAtPosition(int position) {
     // Invalid position
-    if (position < 1) {
+    if(position < 1) {
         return;
     }
 
     // Empty list
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
 
     // Delete at head
-    if (position == 1) {
+    if(position == 1) {
         deleteAtHead();
         return;
     }
 
     Node<T>* currentNode = headNode;
-    for (int i = 0; i < position - 2; i++) {
+    for(int i = 0; i < position - 2; i++) {
         currentNode = currentNode->nextNode;
-        if (currentNode == tailNode) {
+        if(currentNode == tailNode) {
             return;
         }
     }
 
     // Delete at tail
-    if (currentNode->nextNode == tailNode) {
+    if(currentNode->nextNode == tailNode) {
         deleteAtTail();
         return;
     }
@@ -167,42 +167,44 @@ template<typename T> void CircularLinkedList<T>::deleteAtPosition(int position) 
     delete temp;
 }
 
-template<typename T> bool CircularLinkedList<T>::search(T data) const {
-    if (headNode == nullptr) {
-        return false;
+template<typename T> int CircularLinkedList<T>::search(T data) const {
+    if(headNode == nullptr) {
+        return -1;
     }
 
     Node<T>* currentNode = headNode;
+    int i = 0;
     do {
-        if (currentNode->data.isEqual(data)) {
-            return true;
+        if(currentNode->data.isEqual(data)) {
+            return i;
         }
+        i++;
         currentNode = currentNode->nextNode;
-    } while (currentNode != headNode);
+    } while(currentNode != headNode);
 
-    return false;
+    return -1;
 }
 
 template<typename T> void CircularLinkedList<T>::printList() const {
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
 
     Node<T>* currentNode = headNode;
     do {
         currentNode->data.print();
-        if (currentNode != tailNode) {
+        if(currentNode != tailNode) {
             cout << "-->" << endl;
         }
         else {
             cout << endl;
         }
         currentNode = currentNode->nextNode;
-    } while (currentNode != headNode);
+    } while(currentNode != headNode);
 }
 
 template<typename T> void CircularLinkedList<T>::printHeadNode() const {
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
     headNode->data.print();
@@ -210,7 +212,7 @@ template<typename T> void CircularLinkedList<T>::printHeadNode() const {
 }
 
 template<typename T> void CircularLinkedList<T>::printLastNode() const {
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
     tailNode->data.print();
@@ -222,7 +224,7 @@ template<typename T> bool CircularLinkedList<T>::isListEmpty() const {
 }
 
 template<typename T> int CircularLinkedList<T>::countNodes() const {
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return 0;
     }
 
@@ -231,22 +233,22 @@ template<typename T> int CircularLinkedList<T>::countNodes() const {
     do {
         count++;
         currentNode = currentNode->nextNode;
-    } while (currentNode != headNode);
+    } while(currentNode != headNode);
     return count;
 }
 
 template<typename T> void CircularLinkedList<T>::updateNodeValue(T value, T newValue) {
-    if (headNode == nullptr) {
+    if(headNode == nullptr) {
         return;
     }
 
     Node<T>* currentNode = headNode;
     do {
-        if (currentNode->data.isEqual(value)) {
+        if(currentNode->data.isEqual(value)) {
             currentNode->data = newValue;
         }
         currentNode = currentNode->nextNode;
-    } while (currentNode != headNode);
+    } while(currentNode != headNode);
 }
 
 template<typename T> Node<T>* CircularLinkedList<T>::getHeadNode() {

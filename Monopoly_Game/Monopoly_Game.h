@@ -31,7 +31,9 @@ private:
     vector<QTextBrowser*> slotsList;
     vector<Player*> playerList;
     vector<QTextBrowser*> playerTextboxList;
+    Player* currentPlayer;
 
 private slots:
     void on_inputGo_clicked();
+    void on_rollButton_clicked();
 };
