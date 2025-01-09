@@ -25,7 +25,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     propertyList.push_back(new Property("Mall", 1550));
     propertyList.push_back(new Property("Grocery Store", 500));
 
-    // Initialize list of ui elements
+    // Initialize list of UI elements
     slotsList.push_back(ui->textStart);
     slotsList.push_back(ui->textBrowser_top_2);
     slotsList.push_back(ui->textBrowser_top_3);
@@ -47,10 +47,21 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     slotsList.push_back(ui->textBrowser_right_3);
     slotsList.push_back(ui->textBrowser_right_4);
 
+    // Initialize list of right-side UI elements
+    playerTextboxList.push_back(ui->player1Text);
+    playerTextboxList.push_back(ui->player2Text);
+    playerTextboxList.push_back(ui->player3Text);
+    playerTextboxList.push_back(ui->player4Text);
+
     // Display properties onto UI
     ui->playerRollText->hide();
-    ui->rollButton->hide();
+    ui->rollButton->hide(); 
+    ui->player1Text->hide();
+    ui->player2Text->hide();
+    ui->player3Text->hide();
+    ui->player4Text->hide();
     slotsList[0]->setText("Start");
+
     for (int i = 1; i < numOfProperties; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
         QString propertyValue = QString::number(propertyList[i]->getValue());
@@ -81,11 +92,12 @@ void Monopoly_Game::on_inputGo_clicked() {
     ui->inputSelection->hide();
     ui->inputQuestion->hide();
 
-    // Initialize list of players
+    // Initialize list of players and reveal appropriate player text boxes
     numOfPlayers = (ui->inputSelection->currentIndex()) + 1;
     for (int i = 0; i < numOfPlayers; i++) {
-        std::string str = "Player " + std::to_string(i + 1);
+        std::string str = "Player " + std::to_string(i + 1) + " rolls!";
         playerList.push_back(new Player(str, listOfColors[i], board.getHeadNode()));
+        playerTextboxList[i]->show();
     }
 
     QString str = QString::fromStdString(playerList[0]->name);

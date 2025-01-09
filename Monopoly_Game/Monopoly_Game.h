@@ -30,6 +30,7 @@ private:
     vector<Property*> propertyList;
     vector<QTextBrowser*> slotsList;
     vector<Player*> playerList;
+    vector<QTextBrowser*> playerTextboxList;
 
 private slots:
     void on_inputGo_clicked();
