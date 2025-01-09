@@ -4,6 +4,7 @@
 #include "ui_Monopoly_Game.h"
 #include "CircularLinkedList.h"
 #include "Property.h"
+#include "Player.h"
 #include <iostream>
 #include <vector>
 

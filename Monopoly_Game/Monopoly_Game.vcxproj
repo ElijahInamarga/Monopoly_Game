@@ -92,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Property.cpp" />
     <QtRcc Include="Monopoly_Game.qrc" />
     <QtUic Include="Monopoly_Game.ui" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularLinkedList.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Property.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
