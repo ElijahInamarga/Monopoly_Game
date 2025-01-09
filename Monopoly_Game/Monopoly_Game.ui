@@ -392,6 +392,19 @@
      <string>No</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="noMoneyOkButton">
+    <property name="geometry">
+     <rect>
+      <x>309</x>
+      <y>180</y>
+      <width>31</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ok</string>
+    </property>
+   </widget>
    <zorder>text1</zorder>
    <zorder>text2</zorder>
    <zorder>text20</zorder>
@@ -426,6 +439,7 @@
    <zorder>textBuyQuestion</zorder>
    <zorder>pushYes</zorder>
    <zorder>pushNo</zorder>
+   <zorder>noMoneyOkButton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

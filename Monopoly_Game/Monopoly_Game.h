@@ -25,6 +25,7 @@ private:
     const int numOfProperties = 20; // Start counts as a property
     const int numOfSlots = 20;
     int numOfPlayers;
+    int currentPlayerIndex;
     Ui::Monopoly_GameClass* ui;
     CircularLinkedList<Property> board;
     vector<Property*> propertyList;
@@ -36,4 +37,7 @@ private:
 private slots:
     void on_inputGo_clicked();
     void on_rollButton_clicked();
+    void on_pushYes_clicked();
+    void on_pushNo_clicked();
+    void on_noMoneyOkButton_clicked();
 };
