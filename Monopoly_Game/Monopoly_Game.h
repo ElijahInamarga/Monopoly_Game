@@ -22,10 +22,15 @@ public:
     ~Monopoly_Game();
 
 private:
-    const int numOfProperties = 19;
+    const int numOfProperties = 20; // Start counts as a property
     const int numOfSlots = 20;
+    int numOfPlayers;
     Ui::Monopoly_GameClass* ui;
     CircularLinkedList<Property> board;
     vector<Property*> propertyList;
     vector<QTextBrowser*> slotsList;
+    vector<Player*> playerList;
+
+private slots:
+    void on_inputGo_clicked();
 };

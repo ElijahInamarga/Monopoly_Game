@@ -224,6 +224,114 @@
      </rect>
     </property>
    </widget>
+   <widget class="QComboBox" name="inputSelection">
+    <property name="geometry">
+     <rect>
+      <x>284</x>
+      <y>290</y>
+      <width>71</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="inputQuestion">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>250</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>How many Players?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="inputGo">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>330</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Go</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="playerRollText">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>270</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Player 1 rolls</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rollButton">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>290</y>
+      <width>71</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Roll</string>
+    </property>
+   </widget>
+   <zorder>textStart</zorder>
+   <zorder>textBrowser_top_2</zorder>
+   <zorder>textBrowser_left_1</zorder>
+   <zorder>textBrowser_top_6</zorder>
+   <zorder>textBrowser_top_5</zorder>
+   <zorder>textBrowser_top_4</zorder>
+   <zorder>textBrowser_top_3</zorder>
+   <zorder>textBrowser_bot_2</zorder>
+   <zorder>textBrowser_bot_1</zorder>
+   <zorder>textBrowser_10</zorder>
+   <zorder>textBrowser_bot_3</zorder>
+   <zorder>textBrowser_bot_5</zorder>
+   <zorder>textBrowser_bot_4</zorder>
+   <zorder>textBrowser_left_2</zorder>
+   <zorder>textBrowser_left_3</zorder>
+   <zorder>textBrowser_bot_6</zorder>
+   <zorder>textBrowser_right_3</zorder>
+   <zorder>textBrowser_right_1</zorder>
+   <zorder>textBrowser_right_2</zorder>
+   <zorder>textBrowser_left_4</zorder>
+   <zorder>textBrowser_right_4</zorder>
+   <zorder>inputQuestion</zorder>
+   <zorder>inputSelection</zorder>
+   <zorder>inputGo</zorder>
+   <zorder>playerRollText</zorder>
+   <zorder>rollButton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

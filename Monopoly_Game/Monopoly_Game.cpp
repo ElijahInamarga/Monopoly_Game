@@ -4,6 +4,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->setupUi(this);
 
     // Initialize list of properties
+    propertyList.push_back(new Property("Start", 0));
     propertyList.push_back(new Property("Hotel", 1000));
     propertyList.push_back(new Property("Villa", 700));
     propertyList.push_back(new Property("Park", 600));
@@ -24,7 +25,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     propertyList.push_back(new Property("Mall", 1550));
     propertyList.push_back(new Property("Grocery Store", 500));
 
-    // Initialize list of board slots
+    // Initialize list of ui elements
     slotsList.push_back(ui->textStart);
     slotsList.push_back(ui->textBrowser_top_2);
     slotsList.push_back(ui->textBrowser_top_3);
@@ -47,12 +48,14 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     slotsList.push_back(ui->textBrowser_right_4);
 
     // Display properties onto UI
+    ui->playerRollText->hide();
+    ui->rollButton->hide();
     slotsList[0]->setText("Start");
-    for (int i = 0; i < numOfProperties; i++) {
+    for (int i = 1; i < numOfProperties; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
         QString propertyValue = QString::number(propertyList[i]->getValue());
         QString str = propertyName + "\n\nPrice: $" + propertyValue;
-        slotsList[i + 1]->setText(str);
+        slotsList[i]->setText(str);
     }
 }
 
@@ -63,9 +66,30 @@ Monopoly_Game::~Monopoly_Game() {
     for (int i = 0; i < numOfProperties; i++) {
         delete propertyList[i];
     }
-
-    // Delete slots
+     
+    // Delete ui elements
     for (int i = 0; i < numOfSlots; i++) {
         delete slotsList[i];
     }
+}
+
+// Before game begins
+void Monopoly_Game::on_inputGo_clicked() {
+    std::string listOfColors[] = {"blue", "red", "green", "yellow"};
+
+    ui->inputGo->hide();
+    ui->inputSelection->hide();
+    ui->inputQuestion->hide();
+
+    // Initialize list of players
+    numOfPlayers = (ui->inputSelection->currentIndex()) + 1;
+    for (int i = 0; i < numOfPlayers; i++) {
+        std::string str = "Player " + std::to_string(i + 1);
+        playerList.push_back(new Player(str, listOfColors[i], board.getHeadNode()));
+    }
+
+    QString str = QString::fromStdString(playerList[0]->name);
+    ui->playerRollText->setText(str);
+    ui->playerRollText->show();
+    ui->rollButton->show();
 }

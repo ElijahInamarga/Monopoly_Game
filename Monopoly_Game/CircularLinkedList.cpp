@@ -249,4 +249,10 @@ template<typename T> void CircularLinkedList<T>::updateNodeValue(T value, T newV
     } while (currentNode != headNode);
 }
 
+template<typename T> Node<T>* CircularLinkedList<T>::getHeadNode() {
+    if(isListEmpty())
+        return nullptr;
+    return headNode;
+}
+
 #endif // CIRCULARLINKEDLIST_CPP

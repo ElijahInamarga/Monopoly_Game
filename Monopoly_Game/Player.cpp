@@ -6,7 +6,7 @@ Player::Player() {
 	this->position = nullptr;
 }
 
-Player::Player(std::string name, std::string color, Property* position) {
+Player::Player(std::string name, std::string color, Node<Property>* position) {
 	this->name = name;
 	this->color = color;
 	this->position = position;

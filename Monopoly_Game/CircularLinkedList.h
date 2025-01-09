@@ -2,19 +2,9 @@
 #define CIRCULARLINKEDLIST_H
 
 #include <iostream>
+#include "Node.h"
 
 using namespace std;
-
-template<typename T> class Node {
-public:
-    T data;
-    Node* nextNode;
-
-    Node(T value) {
-        data = value;
-        nextNode = nullptr;
-    }
-};
 
 template <typename T> class CircularLinkedList {
 private:
@@ -36,6 +26,7 @@ public:
     bool isListEmpty() const;
     int countNodes() const;
     void updateNodeValue(T value, T newValue);
+    Node<T>* getHeadNode();
 };
 
 #include "CircularLinkedList.cpp" // Include the implementation file
