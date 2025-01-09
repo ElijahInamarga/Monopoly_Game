@@ -149,7 +149,7 @@ void Monopoly_Game::on_rollButton_clicked() {
 
     // Reveal player on board
     int index = board.search(currentPlayer->position->data);
-    QString str = slotsList[index]->toPlainText() + "\n Player 1";
+    QString str = slotsList[index]->toPlainText() + "\n " + QString::fromStdString(currentPlayer->name);
     slotsList[index]->setText(str);
     ui->textBuyQuestion->setText(QString::fromStdString(currentPlayer->name) + ", would you like to buy: \n" + 
                                  QString::fromStdString(currentPlayer->position->data.getName()) + " for $" + 
@@ -162,6 +162,7 @@ void Monopoly_Game::on_rollButton_clicked() {
 void Monopoly_Game::on_pushYes_clicked() {
     ui->pushYes->hide();
     ui->pushNo->hide();
+
     if(currentPlayer->budget < currentPlayer->position->data.getValue()) {
         ui->textBuyQuestion->setText("You don't have enough money");
         ui->noMoneyOkButton->show();
@@ -179,14 +180,16 @@ void Monopoly_Game::on_pushYes_clicked() {
         // Update player text boxes
         QString currentPlayerProperties = " ";
         for(int i = 0; i < currentPlayer->playerProperties.size(); i++) {
-            currentPlayerProperties += QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
+            currentPlayerProperties += QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + " \n";
         }
 
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
-        currentPlayer = playerList[currentPlayerIndex];
+        currentPlayer = playerList[currentPlayerIndex];   
 
         QString str = QString::fromStdString(currentPlayer->name + " rolls!");
+        ui->textBuyQuestion->hide();
+        ui->rollResult->hide();
         ui->playerRollText->setText(str);
         ui->playerRollText->show();
         ui->rollButton->show();
@@ -194,10 +197,20 @@ void Monopoly_Game::on_pushYes_clicked() {
 }
 
 void Monopoly_Game::on_pushNo_clicked() {
+    currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
+    currentPlayer = playerList[currentPlayerIndex];
+
     ui->textBuyQuestion->hide();
     ui->pushYes->hide();
     ui->pushNo->hide();
     ui->rollResult->hide();
+
+    QString str = QString::fromStdString(currentPlayer->name + " rolls!");
+    ui->textBuyQuestion->hide();
+    ui->rollResult->hide();
+    ui->playerRollText->setText(str);
+    ui->playerRollText->show();
+    ui->rollButton->show();
 }
 
 void Monopoly_Game::on_noMoneyOkButton_clicked() {
