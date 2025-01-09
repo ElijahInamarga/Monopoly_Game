@@ -26,26 +26,26 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     propertyList.push_back(new Property("Grocery Store", 500));
 
     // Initialize list of UI elements
-    slotsList.push_back(ui->textStart);
-    slotsList.push_back(ui->textBrowser_top_2);
-    slotsList.push_back(ui->textBrowser_top_3);
-    slotsList.push_back(ui->textBrowser_top_4);
-    slotsList.push_back(ui->textBrowser_top_5);
-    slotsList.push_back(ui->textBrowser_top_6);
-    slotsList.push_back(ui->textBrowser_bot_1);
-    slotsList.push_back(ui->textBrowser_bot_2);
-    slotsList.push_back(ui->textBrowser_bot_3);
-    slotsList.push_back(ui->textBrowser_bot_4);
-    slotsList.push_back(ui->textBrowser_bot_5);
-    slotsList.push_back(ui->textBrowser_bot_6);
-    slotsList.push_back(ui->textBrowser_left_1);
-    slotsList.push_back(ui->textBrowser_left_2);
-    slotsList.push_back(ui->textBrowser_left_3);
-    slotsList.push_back(ui->textBrowser_left_4);
-    slotsList.push_back(ui->textBrowser_right_1);
-    slotsList.push_back(ui->textBrowser_right_2);
-    slotsList.push_back(ui->textBrowser_right_3);
-    slotsList.push_back(ui->textBrowser_right_4);
+    slotsList.push_back(ui->text1);
+    slotsList.push_back(ui->text2);
+    slotsList.push_back(ui->text3);
+    slotsList.push_back(ui->text4);
+    slotsList.push_back(ui->text5);
+    slotsList.push_back(ui->text6);
+    slotsList.push_back(ui->text7);
+    slotsList.push_back(ui->text8);
+    slotsList.push_back(ui->text9);
+    slotsList.push_back(ui->text10);
+    slotsList.push_back(ui->text11);
+    slotsList.push_back(ui->text12);
+    slotsList.push_back(ui->text13);
+    slotsList.push_back(ui->text14);
+    slotsList.push_back(ui->text15);
+    slotsList.push_back(ui->text16);
+    slotsList.push_back(ui->text17);
+    slotsList.push_back(ui->text18);
+    slotsList.push_back(ui->text19);
+    slotsList.push_back(ui->text20);
 
     // Initialize list of right-side UI elements
     playerTextboxList.push_back(ui->player1Text);
@@ -72,6 +72,9 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
         QString propertyValue = QString::number(propertyList[i]->getValue());
         QString str = propertyName + "\n\nPrice: $" + propertyValue;
         slotsList[i]->setText(str);
+    }
+
+    for (int i = 0; i < numOfProperties; i++) {
         board.insertAtTail(*propertyList[i]);
     }
 
@@ -146,4 +149,10 @@ void Monopoly_Game::on_rollButton_clicked() {
     int index = board.search(currentPlayer->position->data);
     QString str = slotsList[index]->toPlainText() + "\n Player 1";
     slotsList[index]->setText(str);
+    ui->textBuyQuestion->setText(QString::fromStdString(currentPlayer->name) + ", would you like to buy: \n" + 
+                                 QString::fromStdString(currentPlayer->position->data.getName()) + " for $" + 
+                                 QString::number(currentPlayer->position->data.getValue()));
+    ui->textBuyQuestion->show();
+    ui->pushYes->show();
+    ui->pushNo->show();
 }

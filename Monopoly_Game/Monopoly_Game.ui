@@ -14,7 +14,7 @@
    <string>Monopoly_Game</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextBrowser" name="textStart">
+   <widget class="QTextBrowser" name="text1">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -24,7 +24,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_top_2">
+   <widget class="QTextBrowser" name="text2">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -34,7 +34,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_left_1">
+   <widget class="QTextBrowser" name="text20">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -44,7 +44,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_top_6">
+   <widget class="QTextBrowser" name="text6">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -54,7 +54,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_top_5">
+   <widget class="QTextBrowser" name="text5">
     <property name="geometry">
      <rect>
       <x>440</x>
@@ -64,7 +64,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_top_4">
+   <widget class="QTextBrowser" name="text4">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -74,7 +74,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_top_3">
+   <widget class="QTextBrowser" name="text3">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -84,7 +84,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_bot_2">
+   <widget class="QTextBrowser" name="text15">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -94,7 +94,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_bot_1">
+   <widget class="QTextBrowser" name="text16">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -114,7 +114,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_bot_3">
+   <widget class="QTextBrowser" name="text14">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -124,7 +124,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_bot_5">
+   <widget class="QTextBrowser" name="text12">
     <property name="geometry">
      <rect>
       <x>440</x>
@@ -134,7 +134,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_bot_4">
+   <widget class="QTextBrowser" name="text13">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -144,7 +144,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_left_2">
+   <widget class="QTextBrowser" name="text19">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -154,7 +154,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_left_3">
+   <widget class="QTextBrowser" name="text18">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -164,7 +164,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_bot_6">
+   <widget class="QTextBrowser" name="text11">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -174,7 +174,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_right_3">
+   <widget class="QTextBrowser" name="text9">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -184,7 +184,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_right_1">
+   <widget class="QTextBrowser" name="text7">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -194,7 +194,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_right_2">
+   <widget class="QTextBrowser" name="text8">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -204,7 +204,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_left_4">
+   <widget class="QTextBrowser" name="text17">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -214,7 +214,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_right_4">
+   <widget class="QTextBrowser" name="text10">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -392,27 +392,27 @@
      <string>No</string>
     </property>
    </widget>
-   <zorder>textStart</zorder>
-   <zorder>textBrowser_top_2</zorder>
-   <zorder>textBrowser_left_1</zorder>
-   <zorder>textBrowser_top_6</zorder>
-   <zorder>textBrowser_top_5</zorder>
-   <zorder>textBrowser_top_4</zorder>
-   <zorder>textBrowser_top_3</zorder>
-   <zorder>textBrowser_bot_2</zorder>
-   <zorder>textBrowser_bot_1</zorder>
+   <zorder>text1</zorder>
+   <zorder>text2</zorder>
+   <zorder>text20</zorder>
+   <zorder>text6</zorder>
+   <zorder>text5</zorder>
+   <zorder>text4</zorder>
+   <zorder>text3</zorder>
+   <zorder>text15</zorder>
+   <zorder>text16</zorder>
    <zorder>textBrowser_10</zorder>
-   <zorder>textBrowser_bot_3</zorder>
-   <zorder>textBrowser_bot_5</zorder>
-   <zorder>textBrowser_bot_4</zorder>
-   <zorder>textBrowser_left_2</zorder>
-   <zorder>textBrowser_left_3</zorder>
-   <zorder>textBrowser_bot_6</zorder>
-   <zorder>textBrowser_right_3</zorder>
-   <zorder>textBrowser_right_1</zorder>
-   <zorder>textBrowser_right_2</zorder>
-   <zorder>textBrowser_left_4</zorder>
-   <zorder>textBrowser_right_4</zorder>
+   <zorder>text14</zorder>
+   <zorder>text12</zorder>
+   <zorder>text13</zorder>
+   <zorder>text19</zorder>
+   <zorder>text18</zorder>
+   <zorder>text11</zorder>
+   <zorder>text9</zorder>
+   <zorder>text7</zorder>
+   <zorder>text8</zorder>
+   <zorder>text17</zorder>
+   <zorder>text10</zorder>
    <zorder>inputQuestion</zorder>
    <zorder>inputSelection</zorder>
    <zorder>inputGo</zorder>
