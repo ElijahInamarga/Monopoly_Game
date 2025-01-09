@@ -54,12 +54,17 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     playerTextboxList.push_back(ui->player4Text);
 
     // Display properties onto UI
+    ui->textBuyQuestion->hide();
+    ui->pushYes->hide();
+    ui->pushNo->hide();
     ui->playerRollText->hide();
     ui->rollButton->hide(); 
     ui->player1Text->hide();
     ui->player2Text->hide();
     ui->player3Text->hide();
     ui->player4Text->hide();
+    ui->rollResult->setStyleSheet("background-color: white;");
+    ui->rollResult->hide();
     slotsList[0]->setText("Start");
 
     for(int i = 1; i < numOfProperties; i++) {
@@ -67,6 +72,12 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
         QString propertyValue = QString::number(propertyList[i]->getValue());
         QString str = propertyName + "\n\nPrice: $" + propertyValue;
         slotsList[i]->setText(str);
+        board.insertAtTail(*propertyList[i]);
+    }
+
+    // Delete properties 
+    for (int i = 0; i < numOfProperties; i++) {
+        delete propertyList[i];
     }
 
     currentPlayer = nullptr;
@@ -74,22 +85,13 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
 Monopoly_Game::~Monopoly_Game() {
     delete ui;
-
-    // Delete properties 
-    for(int i = 0; i < numOfProperties; i++) {
-        delete propertyList[i];
-    }
      
     // Delete ui elements
     for(int i = 0; i < numOfSlots; i++) {
         delete slotsList[i];
     }
 
-    // Delete players
-    for(int i = 0; i < numOfPlayers; i++) {
-        delete playerList[i];
-    }
-
+    // Delete player text boxes
     for (int i = 0; i < 4; i++) {
         delete playerTextboxList[i];
     }
@@ -132,9 +134,16 @@ void Monopoly_Game::on_rollButton_clicked() {
     int randomValue = std::rand() % 12 + 1;
     ui->rollButton->hide();
     ui->playerRollText->hide();
+    ui->rollResult->display(QString::number(randomValue));
+    ui->rollResult->show();
 
-    // Move player based
+    // Move player
     for (int i = 0; i < randomValue; i++) {
         currentPlayer->position = currentPlayer->position->nextNode;
     }
+
+    // Reveal player on board
+    int index = board.search(currentPlayer->position->data);
+    QString str = slotsList[index]->toPlainText() + "\n Player 1";
+    slotsList[index]->setText(str);
 }

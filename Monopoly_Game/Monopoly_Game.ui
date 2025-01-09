@@ -346,6 +346,52 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLCDNumber" name="rollResult">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>290</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBuyQuestion">
+    <property name="geometry">
+     <rect>
+      <x>205</x>
+      <y>110</y>
+      <width>241</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushYes">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>220</y>
+      <width>41</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Yes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushNo">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>220</y>
+      <width>41</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No</string>
+    </property>
+   </widget>
    <zorder>textStart</zorder>
    <zorder>textBrowser_top_2</zorder>
    <zorder>textBrowser_left_1</zorder>
@@ -376,6 +422,10 @@
    <zorder>player2Text</zorder>
    <zorder>player3Text</zorder>
    <zorder>player4Text</zorder>
+   <zorder>rollResult</zorder>
+   <zorder>textBuyQuestion</zorder>
+   <zorder>pushYes</zorder>
+   <zorder>pushNo</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
