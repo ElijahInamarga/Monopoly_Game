@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CIRCULARLINKEDLIST_H
+#define CIRCULARLINKEDLIST_H
 
 #include <iostream>
 #include <string>
@@ -37,3 +38,6 @@ public:
     int countNodes() const;
     void updateNodeValue(T value, T newValue);
 };
+
+#include "CircularLinkedList.cpp" // Include the implementation file
+#endif // CIRCULARLINKEDLIST_H

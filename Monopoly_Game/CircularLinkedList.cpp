@@ -1,17 +1,18 @@
+#ifndef CIRCULARLINKEDLIST_CPP
+#define CIRCULARLINKEDLIST_CPP
+
 #include "CircularLinkedList.h"
 
-template<typename T>
-CircularLinkedList<T>::CircularLinkedList() {
+template<typename T> CircularLinkedList<T>::CircularLinkedList() {
     headNode = nullptr;
     tailNode = nullptr;
 }
 
-template<typename T>
-void CircularLinkedList<T>::insertAtHead(T newData) {
+template<typename T> void CircularLinkedList<T>::insertAtHead(T newData) {
     Node<T>* newNode = new Node<T>(newData);
 
     // Empty list
-    if(headNode == nullptr) {
+    if (headNode == nullptr) {
         headNode = newNode;
         tailNode = newNode;
         newNode->nextNode = newNode;
@@ -25,12 +26,11 @@ void CircularLinkedList<T>::insertAtHead(T newData) {
     tailNode->nextNode = headNode;
 }
 
-template<typename T>
-void CircularLinkedList<T>::insertAtTail(T newData) {
+template<typename T> void CircularLinkedList<T>::insertAtTail(T newData) {
     Node<T>* newNode = new Node<T>(newData);
 
     // Empty list
-    if(headNode == nullptr) {
+    if (headNode == nullptr) {
         headNode = newNode;
         tailNode = newNode;
         newNode->nextNode = newNode;
@@ -43,18 +43,17 @@ void CircularLinkedList<T>::insertAtTail(T newData) {
     newNode->nextNode = headNode;
 }
 
-template<typename T>
-void CircularLinkedList<T>::insertAtPosition(T newData, int position) {
+template<typename T> void CircularLinkedList<T>::insertAtPosition(T newData, int position) {
     Node<T>* newNode = new Node<T>(newData);
 
     // Invalid position
-    if(position < 1) {
+    if (position < 1) {
         return;
     }
 
     // Insert at head
-    if(position == 1) {
-        if(headNode == nullptr) {
+    if (position == 1) {
+        if (headNode == nullptr) {
             headNode = newNode;
             tailNode = newNode;
             newNode->nextNode = newNode;
@@ -68,33 +67,32 @@ void CircularLinkedList<T>::insertAtPosition(T newData, int position) {
     }
 
     // Empty list
-    if(headNode == nullptr) {
+    if (headNode == nullptr) {
         return;
     }
 
     Node<T>* currentNode = headNode;
-    for(int i = 0; i < position - 2; i++) {
+    for (int i = 0; i < position - 2; i++) {
         currentNode = currentNode->nextNode;
-        if(currentNode == headNode) {
+        if (currentNode == headNode) {
             return;
         }
     }
     newNode->nextNode = currentNode->nextNode;
     currentNode->nextNode = newNode;
-    if(newNode->nextNode == headNode) {
+    if (newNode->nextNode == headNode) {
         tailNode = newNode;
     }
 }
 
-template<typename T>
-void CircularLinkedList<T>::deleteAtHead() {
+template<typename T> void CircularLinkedList<T>::deleteAtHead() {
     // Empty list
-    if(headNode == nullptr) {
+    if (headNode == nullptr) {
         return;
     }
 
     // List only has one element
-    if(headNode == tailNode) {
+    if (headNode == tailNode) {
         Node<T>* temp = headNode;
         headNode = nullptr;
         tailNode = nullptr;
@@ -108,15 +106,14 @@ void CircularLinkedList<T>::deleteAtHead() {
     delete temp;
 }
 
-template<typename T>
-void CircularLinkedList<T>::deleteAtTail() {
+template<typename T> void CircularLinkedList<T>::deleteAtTail() {
     // List is empty
-    if(headNode == nullptr) {
+    if (headNode == nullptr) {
         return;
     }
 
     // List only has one element
-    if(headNode == tailNode) {
+    if (headNode == tailNode) {
         Node<T>* temp = headNode;
         headNode = nullptr;
         tailNode = nullptr;
@@ -126,7 +123,7 @@ void CircularLinkedList<T>::deleteAtTail() {
 
     Node<T>* temp = tailNode;
     Node<T>* currentNode = headNode;
-    while(currentNode->nextNode != tailNode) {
+    while (currentNode->nextNode != tailNode) {
         currentNode = currentNode->nextNode;
     }
     currentNode->nextNode = headNode;
@@ -134,34 +131,33 @@ void CircularLinkedList<T>::deleteAtTail() {
     delete temp;
 }
 
-template<typename T>
-void CircularLinkedList<T>::deleteAtPosition(int position) {
+template<typename T> void CircularLinkedList<T>::deleteAtPosition(int position) {
     // Invalid position
-    if(position < 1) {
+    if (position < 1) {
         return;
     }
 
     // Empty list
-    if(headNode == nullptr) {
+    if (headNode == nullptr) {
         return;
     }
 
     // Delete at head
-    if(position == 1) {
+    if (position == 1) {
         deleteAtHead();
         return;
     }
 
     Node<T>* currentNode = headNode;
-    for(int i = 0; i < position - 2; i++) {
+    for (int i = 0; i < position - 2; i++) {
         currentNode = currentNode->nextNode;
-        if(currentNode == tailNode) {
+        if (currentNode == tailNode) {
             return;
         }
     }
 
     // Delete at tail
-    if(currentNode->nextNode == tailNode) {
+    if (currentNode->nextNode == tailNode) {
         deleteAtTail();
         return;
     }
@@ -171,70 +167,62 @@ void CircularLinkedList<T>::deleteAtPosition(int position) {
     delete temp;
 }
 
-template<typename T>
-bool CircularLinkedList<T>::search(T data) const {
-    if(headNode == nullptr) {
+template<typename T> bool CircularLinkedList<T>::search(T data) const {
+    if (headNode == nullptr) {
         return false;
     }
 
     Node<T>* currentNode = headNode;
-    do{
-        if(currentNode->data.isEqual(data)) {
+    do {
+        if (currentNode->data.isEqual(data)) {
             return true;
         }
         currentNode = currentNode->nextNode;
-    } while(currentNode != headNode);
+    } while (currentNode != headNode);
 
     return false;
 }
 
-template<typename T>
-void CircularLinkedList<T>::printList() const {
-    if(headNode == nullptr) {
+template<typename T> void CircularLinkedList<T>::printList() const {
+    if (headNode == nullptr) {
         return;
     }
 
     Node<T>* currentNode = headNode;
     do {
         currentNode->data.print();
-        if(currentNode != tailNode) {
+        if (currentNode != tailNode) {
             cout << "-->" << endl;
-        } else {
+        }
+        else {
             cout << endl;
         }
         currentNode = currentNode->nextNode;
-    } while(currentNode != headNode);
+    } while (currentNode != headNode);
 }
 
-template<typename T>
-void CircularLinkedList<T>::printHeadNode() const {
-    if(headNode == nullptr) {
+template<typename T> void CircularLinkedList<T>::printHeadNode() const {
+    if (headNode == nullptr) {
         return;
     }
     headNode->data.print();
     cout << endl;
 }
 
-template<typename T>
-void CircularLinkedList<T>::printLastNode() const {
-    if(headNode == nullptr) {
+template<typename T> void CircularLinkedList<T>::printLastNode() const {
+    if (headNode == nullptr) {
         return;
     }
     tailNode->data.print();
     cout << endl;
 }
 
-template<typename T>
-bool CircularLinkedList<T>::isListEmpty() const {
-    if(headNode == nullptr) {
-        return true;
-    }
-    return false;
+template<typename T> bool CircularLinkedList<T>::isListEmpty() const {
+    return headNode == nullptr;
 }
 
-template<typename T>
-int CircularLinkedList<T>::countNodes() const {
-    if(headNode == nullptr) {
+template<typename T> int CircularLinkedList<T>::countNodes() const {
+    if (headNode == nullptr) {
         return 0;
     }
 
@@ -243,21 +231,22 @@ int CircularLinkedList<T>::countNodes() const {
     do {
         count++;
         currentNode = currentNode->nextNode;
-    } while(currentNode != headNode);
+    } while (currentNode != headNode);
     return count;
 }
 
-template<typename T>
-void CircularLinkedList<T>::updateNodeValue(T value, T newValue) {
-    if(headNode == nullptr) {
+template<typename T> void CircularLinkedList<T>::updateNodeValue(T value, T newValue) {
+    if (headNode == nullptr) {
         return;
     }
 
     Node<T>* currentNode = headNode;
     do {
-        if(currentNode->data.isEqual(value)) {
+        if (currentNode->data.isEqual(value)) {
             currentNode->data = newValue;
         }
         currentNode = currentNode->nextNode;
-    } while(currentNode != headNode);
+    } while (currentNode != headNode);
 }
+
+#endif // CIRCULARLINKEDLIST_CPP
