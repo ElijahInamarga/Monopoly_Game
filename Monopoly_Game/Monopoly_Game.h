@@ -4,6 +4,7 @@
 #include "ui_Monopoly_Game.h"
 #include "CircularLinkedList.h"
 #include "Property.h"
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { 
@@ -15,11 +16,11 @@ class Monopoly_Game : public QMainWindow {
     Q_OBJECT
 
 public:
-    Monopoly_Game(QWidget *parent = nullptr);
+    Monopoly_Game(QWidget* parent = nullptr);
     ~Monopoly_Game();
 
 private:
-    Ui::Monopoly_GameClass *ui;
+    Ui::Monopoly_GameClass* ui;
     CircularLinkedList<Property> board;
     Property* prop1;
     Property* prop2;

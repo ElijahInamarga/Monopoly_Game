@@ -21,3 +21,11 @@ bool Property::isEqual(Property other) const {
 void Property::print() const {
     cout << "[Name: " + propertyName << ", Value: " << value << "]";
 }
+
+string Property::getName() {
+    return this->propertyName;
+}
+
+int Property::getValue() {
+    return this->value;
+}

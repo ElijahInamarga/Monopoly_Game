@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -15,5 +14,7 @@ public:
     Property(string propertyName, int value);
     bool isEqual(Property other) const;
     void print() const;
+    string getName();
+    int getValue();
 };
 
