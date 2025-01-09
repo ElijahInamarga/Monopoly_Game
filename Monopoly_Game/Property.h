@@ -17,6 +17,6 @@ public:
     string getName();
     int getValue();
     bool isBought();
-    void setBought(bool x);
+    void setBought();
 };
 

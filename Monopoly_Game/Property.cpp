@@ -8,6 +8,7 @@ Property::Property() {
 Property::Property(string propertyName, int value) {
     this->propertyName = propertyName;
     this->value = value;
+    this->bought = false;
 }
 
 bool Property::isEqual(Property other) const {
@@ -31,9 +32,9 @@ int Property::getValue() {
 }
 
 bool Property::isBought() {
-    return bought;
+    return this->bought;
 }
 
-void Property::setBought(bool x) {
-    bought = x;
+void Property::setBought() {
+    this->bought = true;
 }
