@@ -185,6 +185,7 @@ void Monopoly_Game::on_pushYes_clicked() {
 
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
+        currentPlayer->position->data.
         currentPlayer = playerList[currentPlayerIndex];   
 
         QString str = QString::fromStdString(currentPlayer->name + " rolls!");

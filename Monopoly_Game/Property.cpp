@@ -33,3 +33,7 @@ int Property::getValue() {
 bool Property::isBought() {
     return bought;
 }
+
+void Property::setBought(bool x) {
+    bought = x;
+}
