@@ -213,7 +213,22 @@ void Monopoly_Game::on_rollButton_clicked() {
     possiblePlayerLocationsList[index][currentPlayerIndex]->show();
 
     // Determine if property can be bought
-    if (currentPlayer->position->data.isBought() || currentPlayer->position->data.isEqual(Property("Start", 0))) {
+    if (currentPlayer->position->data.isEqual(Property("Start", 0))) {
+        currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
+        currentPlayer = playerList[currentPlayerIndex];
+
+        ui->textBuyQuestion->hide();
+        ui->pushYes->hide();
+        ui->pushNo->hide();
+        ui->rollResult->hide();
+
+        QString str = QString::fromStdString(currentPlayer->name + "'s turn to roll");
+        ui->textBuyQuestion->hide();
+        ui->rollResult->hide();
+        ui->playerRollText->setText(str);
+        ui->playerRollText->show();
+        ui->rollButton->show();
+    } else if (currentPlayer->position->data.isBought()) {
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
         currentPlayer = playerList[currentPlayerIndex];
 
