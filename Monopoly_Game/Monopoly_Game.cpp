@@ -229,6 +229,27 @@ void Monopoly_Game::on_rollButton_clicked() {
         ui->playerRollText->show();
         ui->rollButton->show();
     } else if (currentPlayer->position->data.isBought()) {
+        // Penalize currentPlayer and update currentPlayer's player text box
+        currentPlayer->budget -= currentPlayer->position->data.getPenalty();
+        QString playerName = QString::fromStdString(currentPlayer->name);
+        QString playerBudget = QString::number(currentPlayer->budget);
+        QString currentPlayerProperties = "";
+        for (int i = 0; i < currentPlayer->playerProperties.size(); i++) {
+            currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
+        }
+        playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
+
+        // Award property owner and update owner's player text box
+        playerList[currentPlayer->position->data.getOwnerIndex()]->budget += currentPlayer->position->data.getPenalty();
+        playerName = QString::fromStdString(playerList[currentPlayer->position->data.getOwnerIndex()]->name);
+        playerBudget = QString::number(playerList[currentPlayer->position->data.getOwnerIndex()]->budget);
+        currentPlayerProperties = "";
+        for (int i = 0; i < playerList[currentPlayer->position->data.getOwnerIndex()]->playerProperties.size(); i++) {
+            currentPlayerProperties += " " + QString::fromStdString(playerList[currentPlayer->position->data.getOwnerIndex()]->playerProperties[i]->getName()) + "\n";
+        }
+        playerTextboxList[currentPlayer->position->data.getOwnerIndex()]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
+
+        // Move to next player
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
         currentPlayer = playerList[currentPlayerIndex];
 
@@ -271,16 +292,17 @@ void Monopoly_Game::on_pushYes_clicked() {
         // Recolor slot on board 
         int index = board.search(currentPlayer->position->data);
         slotsList[index]->setStyleSheet("background-color: " + QString::fromStdString(currentPlayer->color) + ";");
-        QString playerName = QString::fromStdString(currentPlayer->name);
-        QString playerBudget = QString::number(currentPlayer->budget);
         
         // Update player text boxes
+        QString playerName = QString::fromStdString(currentPlayer->name);
+        QString playerBudget = QString::number(currentPlayer->budget);
         QString currentPlayerProperties = "";
         for(int i = 0; i < currentPlayer->playerProperties.size(); i++) {
             currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
         }
-
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
+
+        // Move to next player
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
         currentPlayer = playerList[currentPlayerIndex];   
 
