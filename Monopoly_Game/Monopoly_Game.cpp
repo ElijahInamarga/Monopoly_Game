@@ -76,7 +76,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     possiblePlayerLocationsList.push_back({ ui->label_58, ui->label_59, ui->label_60 });
 
     // Set up initial UI
-    for (int i = 0; i < numOfSlots; i++) {
+    for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             possiblePlayerLocationsList[i][j]->hide();
         }
@@ -93,19 +93,19 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->rollResult->hide();
     slotsList[0]->setText("Start");
 
-    for(int i = 1; i < numOfProperties; i++) {
+    for(int i = 1; i < NUM_OF_PROPERTIES; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
         QString propertyValue = QString::number(propertyList[i]->getValue());
         QString str = propertyName + "\n\nPrice: $" + propertyValue;
         slotsList[i]->setText(str);
     }
 
-    for (int i = 0; i < numOfProperties; i++) {
+    for (int i = 0; i < NUM_OF_PROPERTIES; i++) {
         board.insertAtTail(*propertyList[i]);
     }
 
     // Delete properties 
-    for (int i = 0; i < numOfProperties; i++) {
+    for (int i = 0; i < NUM_OF_PROPERTIES; i++) {
         delete propertyList[i];
     }
 
@@ -114,9 +114,10 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
 Monopoly_Game::~Monopoly_Game() {
     delete ui;
-     
+    delete currentPlayer;
+
     // Delete ui elements
-    for(int i = 0; i < numOfSlots; i++) {
+    for(int i = 0; i < NUM_OF_SLOTS; i++) {
         delete slotsList[i];
     }
 
@@ -126,7 +127,7 @@ Monopoly_Game::~Monopoly_Game() {
     }
 
     // Delete player labels
-    for (int i = 0; i < numOfSlots; i++) {
+    for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             delete possiblePlayerLocationsList[i][j];
         }
@@ -179,7 +180,7 @@ void Monopoly_Game::on_inputGo_clicked() {
 void Monopoly_Game::on_rollButton_clicked() {
     // After roll
     std::srand(std::time(nullptr));
-    int randomValue = std::rand() % 12 + 1;
+    int randomValue = std::rand() % MAX_ROLL + 1;
     ui->rollButton->hide();
     ui->playerRollText->hide();
     if(randomValue == 8 || randomValue == 11)
@@ -191,10 +192,22 @@ void Monopoly_Game::on_rollButton_clicked() {
     // Move player
     for (int i = 0; i < randomValue; i++) {
         currentPlayer->position = currentPlayer->position->nextNode;
+        if (currentPlayer->position->data.isEqual(Property("Start", 0))) {
+            currentPlayer->budget += 200;
+
+            // Update player text box
+            QString playerName = QString::fromStdString(currentPlayer->name);
+            QString playerBudget = QString::number(currentPlayer->budget);
+            QString currentPlayerProperties = "";
+            for (int i = 0; i < currentPlayer->playerProperties.size(); i++) {
+                currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
+            }
+            playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
+        }
     }
 
     int index = board.search(currentPlayer->position->data);
-    for (int i = 0; i < numOfSlots; i++) {
+    for (int i = 0; i < NUM_OF_SLOTS; i++) {
         possiblePlayerLocationsList[i][currentPlayerIndex]->hide();
     }
     possiblePlayerLocationsList[index][currentPlayerIndex]->show();

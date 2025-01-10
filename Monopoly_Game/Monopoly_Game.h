@@ -22,8 +22,10 @@ public:
     ~Monopoly_Game();
 
 private:
-    const int numOfProperties = 20; // Start counts as a property
-    const int numOfSlots = 20;
+    const int NUM_OF_PROPERTIES = 20; // Start counts as a property
+    const int NUM_OF_SLOTS = 20;
+    const int MAX_ROLL = 12;
+
     int numOfPlayers;
     int currentPlayerIndex;
     Ui::Monopoly_GameClass* ui;
