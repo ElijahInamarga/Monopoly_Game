@@ -55,27 +55,27 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
     // Initialize vector of possible player locations
     possiblePlayerLocationsList.push_back({ ui->label_3, ui->label, ui->label_2 });
-    possiblePlayerLocationsList.push_back({ui->label_6, ui->label_5, ui->label_4});
-    possiblePlayerLocationsList.push_back({ui->label_7, ui->label_8, ui->label_9});
-    possiblePlayerLocationsList.push_back({ui->label_10, ui->label_11, ui->label_12});
-    possiblePlayerLocationsList.push_back({ui->label_13, ui->label_14, ui->label_15});
-    possiblePlayerLocationsList.push_back({ui->label_16, ui->label_17, ui->label_18});
-    possiblePlayerLocationsList.push_back({ui->label_19, ui->label_20, ui->label_21});
-    possiblePlayerLocationsList.push_back({ui->label_22, ui->label_23, ui->label_24});
-    possiblePlayerLocationsList.push_back({ui->label_25, ui->label_26, ui->label_27});
-    possiblePlayerLocationsList.push_back({ui->label_28, ui->label_29, ui->label_30});
-    possiblePlayerLocationsList.push_back({ui->label_31, ui->label_32, ui->label_33});
-    possiblePlayerLocationsList.push_back({ui->label_34, ui->label_35, ui->label_36});
-    possiblePlayerLocationsList.push_back({ui->label_37, ui->label_38, ui->label_39});
-    possiblePlayerLocationsList.push_back({ui->label_40, ui->label_41, ui->label_42});
-    possiblePlayerLocationsList.push_back({ui->label_43, ui->label_44, ui->label_45});
-    possiblePlayerLocationsList.push_back({ui->label_46, ui->label_47, ui->label_48});
-    possiblePlayerLocationsList.push_back({ui->label_49, ui->label_50, ui->label_51});
-    possiblePlayerLocationsList.push_back({ui->label_52, ui->label_53, ui->label_54});
-    possiblePlayerLocationsList.push_back({ui->label_55, ui->label_56, ui->label_57});
-    possiblePlayerLocationsList.push_back({ui->label_58, ui->label_59, ui->label_60});
+    possiblePlayerLocationsList.push_back({ ui->label_6, ui->label_5, ui->label_4 });
+    possiblePlayerLocationsList.push_back({ ui->label_7, ui->label_8, ui->label_9 });
+    possiblePlayerLocationsList.push_back({ ui->label_10, ui->label_11, ui->label_12 });
+    possiblePlayerLocationsList.push_back({ ui->label_13, ui->label_14, ui->label_15 });
+    possiblePlayerLocationsList.push_back({ ui->label_16, ui->label_17, ui->label_18 });
+    possiblePlayerLocationsList.push_back({ ui->label_19, ui->label_20, ui->label_21 });
+    possiblePlayerLocationsList.push_back({ ui->label_22, ui->label_23, ui->label_24 });
+    possiblePlayerLocationsList.push_back({ ui->label_25, ui->label_26, ui->label_27 });
+    possiblePlayerLocationsList.push_back({ ui->label_28, ui->label_29, ui->label_30 });
+    possiblePlayerLocationsList.push_back({ ui->label_31, ui->label_32, ui->label_33 });
+    possiblePlayerLocationsList.push_back({ ui->label_34, ui->label_35, ui->label_36 });
+    possiblePlayerLocationsList.push_back({ ui->label_37, ui->label_38, ui->label_39 });
+    possiblePlayerLocationsList.push_back({ ui->label_40, ui->label_41, ui->label_42 });
+    possiblePlayerLocationsList.push_back({ ui->label_43, ui->label_44, ui->label_45 });
+    possiblePlayerLocationsList.push_back({ ui->label_46, ui->label_47, ui->label_48 });
+    possiblePlayerLocationsList.push_back({ ui->label_49, ui->label_50, ui->label_51 });
+    possiblePlayerLocationsList.push_back({ ui->label_52, ui->label_53, ui->label_54 });
+    possiblePlayerLocationsList.push_back({ ui->label_55, ui->label_56, ui->label_57 });
+    possiblePlayerLocationsList.push_back({ ui->label_58, ui->label_59, ui->label_60 });
 
-    // Set up initial GUI
+    // Set up initial UI
     for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             possiblePlayerLocationsList[i][j]->hide();
@@ -86,14 +86,14 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->pushYes->hide();
     ui->pushNo->hide();
     ui->playerRollText->hide();
-    ui->rollButton->hide(); 
+    ui->rollButton->hide();
     ui->player1Text->hide();
     ui->player2Text->hide();
     ui->player3Text->hide();
     ui->rollResult->hide();
     slotsList[0]->setText("Start");
 
-    for(int i = 1; i < NUM_OF_PROPERTIES; i++) {
+    for (int i = 1; i < NUM_OF_PROPERTIES; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
         QString propertyValue = QString::number(propertyList[i]->getValue());
         QString str = propertyName + "\n\nPrice: $" + propertyValue;
@@ -107,7 +107,6 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     // Delete properties 
     for (int i = 0; i < NUM_OF_PROPERTIES; i++) {
         delete propertyList[i];
-        propertyList[i] = nullptr;
     }
 
     currentPlayer = nullptr;
@@ -115,25 +114,21 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
 Monopoly_Game::~Monopoly_Game() {
     delete ui;
-    ui = nullptr;
 
-    // Delete GUI elements
-    for(int i = 0; i < NUM_OF_SLOTS; i++) {
+    // Delete ui elements
+    for (int i = 0; i < NUM_OF_SLOTS; i++) {
         delete slotsList[i];
-        slotsList[i] = nullptr;
     }
 
     // Delete player text boxes
     for (int i = 0; i < 3; i++) {
         delete playerTextboxList[i];
-        playerTextboxList[i] = nullptr;
     }
 
     // Delete player labels
     for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             delete possiblePlayerLocationsList[i][j];
-            possiblePlayerLocationsList[i][j] = nullptr;
         }
     }
 }
@@ -187,7 +182,7 @@ void Monopoly_Game::on_rollButton_clicked() {
     int randomValue = std::rand() % MAX_ROLL + 1;
     ui->rollButton->hide();
     ui->playerRollText->hide();
-    if(randomValue == 8 || randomValue == 11)
+    if (randomValue == 8 || randomValue == 11)
         ui->rollResult->setText("You rolled an " + QString::number(randomValue) + "!");
     else
         ui->rollResult->setText("You rolled a " + QString::number(randomValue) + "!");
@@ -232,7 +227,8 @@ void Monopoly_Game::on_rollButton_clicked() {
         ui->playerRollText->setText(str);
         ui->playerRollText->show();
         ui->rollButton->show();
-    } else if (currentPlayer->position->data.isBought()) {
+    }
+    else if (currentPlayer->position->data.isBought()) {
         // Penalize currentPlayer and update currentPlayer's player text box
         currentPlayer->budget -= currentPlayer->position->data.getPenalty();
         QString playerName = QString::fromStdString(currentPlayer->name);
@@ -268,10 +264,11 @@ void Monopoly_Game::on_rollButton_clicked() {
         ui->playerRollText->setText(str);
         ui->playerRollText->show();
         ui->rollButton->show();
-    } else {
+    }
+    else {
         QString buyQuestion = QString::fromStdString(currentPlayer->name) + ", would you like to buy: \n" +
-                              QString::fromStdString(currentPlayer->position->data.getName()) + " for $" +
-                              QString::number(currentPlayer->position->data.getValue());
+            QString::fromStdString(currentPlayer->position->data.getName()) + " for $" +
+            QString::number(currentPlayer->position->data.getValue());
         ui->textBuyQuestion->setText(buyQuestion + "?");
         ui->textBuyQuestion->show();
         ui->pushYes->show();
@@ -286,7 +283,8 @@ void Monopoly_Game::on_pushYes_clicked() {
     if (currentPlayer->budget < currentPlayer->position->data.getValue()) {
         ui->textBuyQuestion->setText("You don't have enough money");
         ui->noMoneyOkButton->show();
-    } else {
+    }
+    else {
         // Update player information
         currentPlayer->playerProperties.push_back(&currentPlayer->position->data);
         currentPlayer->budget -= currentPlayer->position->data.getValue();
@@ -296,19 +294,19 @@ void Monopoly_Game::on_pushYes_clicked() {
         // Recolor slot on board 
         int index = board.search(currentPlayer->position->data);
         slotsList[index]->setStyleSheet("background-color: " + QString::fromStdString(currentPlayer->color) + ";");
-        
+
         // Update player text boxes
         QString playerName = QString::fromStdString(currentPlayer->name);
         QString playerBudget = QString::number(currentPlayer->budget);
         QString currentPlayerProperties = "";
-        for(int i = 0; i < currentPlayer->playerProperties.size(); i++) {
+        for (int i = 0; i < currentPlayer->playerProperties.size(); i++) {
             currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
         }
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
 
         // Move to next player
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
-        currentPlayer = playerList[currentPlayerIndex];   
+        currentPlayer = playerList[currentPlayerIndex];
 
         QString str = QString::fromStdString(currentPlayer->name + "'s turn to roll");
         ui->textBuyQuestion->hide();
