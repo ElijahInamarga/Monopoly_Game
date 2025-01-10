@@ -3,12 +3,14 @@
 Property::Property() {
     this->propertyName = "NULL";
     this->value = NULL;
+    this->penalty = NULL;
 }
 
-Property::Property(string propertyName, int value) {
+Property::Property(string propertyName, int value, int penalty) {
     this->propertyName = propertyName;
     this->value = value;
     this->bought = false;
+    this->penalty = penalty;
 }
 
 Property::Property(string propertyName, bool cantBuy) {
