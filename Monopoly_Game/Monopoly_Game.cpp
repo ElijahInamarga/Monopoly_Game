@@ -265,6 +265,8 @@ void Monopoly_Game::on_pushYes_clicked() {
         // Update player information
         currentPlayer->playerProperties.push_back(&currentPlayer->position->data);
         currentPlayer->budget -= currentPlayer->position->data.getValue();
+        currentPlayer->position->data.setBought();
+        currentPlayer->position->data.setOwnerIndex(currentPlayerIndex);
 
         // Recolor slot on board 
         int index = board.search(currentPlayer->position->data);
@@ -280,7 +282,6 @@ void Monopoly_Game::on_pushYes_clicked() {
 
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
-        currentPlayer->position->data.setBought();
         currentPlayer = playerList[currentPlayerIndex];   
 
         QString str = QString::fromStdString(currentPlayer->name + "'s turn to roll");
