@@ -11,6 +11,12 @@ Property::Property(string propertyName, int value) {
     this->bought = false;
 }
 
+Property::Property(string propertyName, bool cantBuy) {
+    this->propertyName = propertyName;
+    this->bought = true;
+    this->value = 0;
+}
+
 bool Property::isEqual(Property other) const {
     if (other.propertyName == this->propertyName
         && other.value == this->value) {

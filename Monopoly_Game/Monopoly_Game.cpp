@@ -5,7 +5,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     currentPlayerIndex = 0;
 
     // Initialize list of properties
-    propertyList.push_back(new Property("Start", 0));
+    propertyList.push_back(new Property("Start", true));
     propertyList.push_back(new Property("Hotel", 1000));
     propertyList.push_back(new Property("Villa", 700));
     propertyList.push_back(new Property("Park", 600));
@@ -75,7 +75,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     possiblePlayerLocationsList.push_back({ ui->label_55, ui->label_56, ui->label_57 });
     possiblePlayerLocationsList.push_back({ ui->label_58, ui->label_59, ui->label_60 });
 
-    // Set up initial UI
+    // Set up initial GUI
     for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             possiblePlayerLocationsList[i][j]->hide();
@@ -116,7 +116,7 @@ Monopoly_Game::~Monopoly_Game() {
     delete ui;
     delete currentPlayer;
 
-    // Delete ui elements
+    // Delete GUI elements
     for(int i = 0; i < NUM_OF_SLOTS; i++) {
         delete slotsList[i];
     }
@@ -213,7 +213,7 @@ void Monopoly_Game::on_rollButton_clicked() {
     possiblePlayerLocationsList[index][currentPlayerIndex]->show();
 
     // Determine if property can be bought
-    if (currentPlayer->position->data.isBought() || currentPlayer->position->data.isEqual(Property("Start", 0))) {
+    if (currentPlayer->position->data.isBought()) {
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
         currentPlayer = playerList[currentPlayerIndex];
 

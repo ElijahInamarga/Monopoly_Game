@@ -12,6 +12,7 @@ private:
 public:
     Property();
     Property(string propertyName, int value);
+    Property(string propertyName, bool cantBuy);
     bool isEqual(Property other) const;
     void print() const;
     string getName();
