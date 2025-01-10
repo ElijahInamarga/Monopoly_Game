@@ -5,6 +5,7 @@ Property::Property() {
     this->value = NULL;
     this->bought = false;
     this->penalty = NULL;
+    this->ownerIndex = NULL;
 }
 
 Property::Property(std::string propertyName) {
@@ -12,6 +13,7 @@ Property::Property(std::string propertyName) {
     this->value = 0;
     this->bought = false;
     this->penalty = 0;
+    this->ownerIndex = NULL;
 }
 
 Property::Property(string propertyName, int value, int penalty) {
@@ -19,6 +21,7 @@ Property::Property(string propertyName, int value, int penalty) {
     this->value = value;
     this->bought = false;
     this->penalty = penalty;
+    this->ownerIndex = NULL;
 }
 
 bool Property::isEqual(Property other) const {
@@ -51,4 +54,12 @@ void Property::setBought() {
 
 int Property::getPenalty() {
     return this->penalty;
+}
+
+void Property::setOwnerIndex(int ownerIndex) {
+    this->ownerIndex = ownerIndex;
+}
+
+int Property::getOwnerIndex() {
+    return this->ownerIndex;
 }

@@ -10,6 +10,7 @@ private:
     int value;
     int penalty;
     bool bought;
+    int ownerIndex;
 
 public:
     Property();
@@ -22,5 +23,7 @@ public:
     bool isBought();
     void setBought();
     int getPenalty();
+    void setOwnerIndex(int ownerIndex);
+    int getOwnerIndex();
 };
 
