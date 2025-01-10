@@ -55,27 +55,27 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
     // Initialize vector of possible player locations
     possiblePlayerLocationsList.push_back({ ui->label_3, ui->label, ui->label_2 });
-    possiblePlayerLocationsList.push_back({ ui->label_6, ui->label_5, ui->label_4 });
-    possiblePlayerLocationsList.push_back({ ui->label_7, ui->label_8, ui->label_9 });
-    possiblePlayerLocationsList.push_back({ ui->label_10, ui->label_11, ui->label_12 });
-    possiblePlayerLocationsList.push_back({ ui->label_13, ui->label_14, ui->label_15 });
-    possiblePlayerLocationsList.push_back({ ui->label_16, ui->label_17, ui->label_18 });
-    possiblePlayerLocationsList.push_back({ ui->label_19, ui->label_20, ui->label_21 });
-    possiblePlayerLocationsList.push_back({ ui->label_22, ui->label_23, ui->label_24 });
-    possiblePlayerLocationsList.push_back({ ui->label_25, ui->label_26, ui->label_27 });
-    possiblePlayerLocationsList.push_back({ ui->label_28, ui->label_29, ui->label_30 });
-    possiblePlayerLocationsList.push_back({ ui->label_31, ui->label_32, ui->label_33 });
-    possiblePlayerLocationsList.push_back({ ui->label_34, ui->label_35, ui->label_36 });
-    possiblePlayerLocationsList.push_back({ ui->label_37, ui->label_38, ui->label_39 });
-    possiblePlayerLocationsList.push_back({ ui->label_40, ui->label_41, ui->label_42 });
-    possiblePlayerLocationsList.push_back({ ui->label_43, ui->label_44, ui->label_45 });
-    possiblePlayerLocationsList.push_back({ ui->label_46, ui->label_47, ui->label_48 });
-    possiblePlayerLocationsList.push_back({ ui->label_49, ui->label_50, ui->label_51 });
-    possiblePlayerLocationsList.push_back({ ui->label_52, ui->label_53, ui->label_54 });
-    possiblePlayerLocationsList.push_back({ ui->label_55, ui->label_56, ui->label_57 });
-    possiblePlayerLocationsList.push_back({ ui->label_58, ui->label_59, ui->label_60 });
+    possiblePlayerLocationsList.push_back({ui->label_6, ui->label_5, ui->label_4});
+    possiblePlayerLocationsList.push_back({ui->label_7, ui->label_8, ui->label_9});
+    possiblePlayerLocationsList.push_back({ui->label_10, ui->label_11, ui->label_12});
+    possiblePlayerLocationsList.push_back({ui->label_13, ui->label_14, ui->label_15});
+    possiblePlayerLocationsList.push_back({ui->label_16, ui->label_17, ui->label_18});
+    possiblePlayerLocationsList.push_back({ui->label_19, ui->label_20, ui->label_21});
+    possiblePlayerLocationsList.push_back({ui->label_22, ui->label_23, ui->label_24});
+    possiblePlayerLocationsList.push_back({ui->label_25, ui->label_26, ui->label_27});
+    possiblePlayerLocationsList.push_back({ui->label_28, ui->label_29, ui->label_30});
+    possiblePlayerLocationsList.push_back({ui->label_31, ui->label_32, ui->label_33});
+    possiblePlayerLocationsList.push_back({ui->label_34, ui->label_35, ui->label_36});
+    possiblePlayerLocationsList.push_back({ui->label_37, ui->label_38, ui->label_39});
+    possiblePlayerLocationsList.push_back({ui->label_40, ui->label_41, ui->label_42});
+    possiblePlayerLocationsList.push_back({ui->label_43, ui->label_44, ui->label_45});
+    possiblePlayerLocationsList.push_back({ui->label_46, ui->label_47, ui->label_48});
+    possiblePlayerLocationsList.push_back({ui->label_49, ui->label_50, ui->label_51});
+    possiblePlayerLocationsList.push_back({ui->label_52, ui->label_53, ui->label_54});
+    possiblePlayerLocationsList.push_back({ui->label_55, ui->label_56, ui->label_57});
+    possiblePlayerLocationsList.push_back({ui->label_58, ui->label_59, ui->label_60});
 
-    // Set up initial UI
+    // Set up initial GUI
     for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             possiblePlayerLocationsList[i][j]->hide();
@@ -107,6 +107,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     // Delete properties 
     for (int i = 0; i < NUM_OF_PROPERTIES; i++) {
         delete propertyList[i];
+        propertyList[i] = nullptr;
     }
 
     currentPlayer = nullptr;
@@ -114,22 +115,25 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
 Monopoly_Game::~Monopoly_Game() {
     delete ui;
-    delete currentPlayer;
+    ui = nullptr;
 
-    // Delete ui elements
+    // Delete GUI elements
     for(int i = 0; i < NUM_OF_SLOTS; i++) {
         delete slotsList[i];
+        slotsList[i] = nullptr;
     }
 
     // Delete player text boxes
     for (int i = 0; i < 3; i++) {
         delete playerTextboxList[i];
+        playerTextboxList[i] = nullptr;
     }
 
     // Delete player labels
     for (int i = 0; i < NUM_OF_SLOTS; i++) {
         for (int j = 0; j < 3; j++) {
             delete possiblePlayerLocationsList[i][j];
+            possiblePlayerLocationsList[i][j] = nullptr;
         }
     }
 }
