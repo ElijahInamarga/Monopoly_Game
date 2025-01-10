@@ -16,7 +16,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     propertyList.push_back(new Property("University", 2000));
     propertyList.push_back(new Property("Bank", 800));
     propertyList.push_back(new Property("Airport", 1800));
-    propertyList.push_back(new Property("Convenience Store", 450));
+    propertyList.push_back(new Property("Store", 450));
     propertyList.push_back(new Property("Dealership", 1250));
     propertyList.push_back(new Property("Mega Mall", 2150));
     propertyList.push_back(new Property("Spa", 550));
@@ -52,9 +52,36 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     playerTextboxList.push_back(ui->player1Text);
     playerTextboxList.push_back(ui->player2Text);
     playerTextboxList.push_back(ui->player3Text);
-    playerTextboxList.push_back(ui->player4Text);
+
+    // Initialize vector of possible player locations
+    slotsOfPlayersList.push_back({ ui->label_3, ui->label, ui->label_2 });
+    slotsOfPlayersList.push_back({ ui->label_6, ui->label_5, ui->label_4 }); 
+    slotsOfPlayersList.push_back({ ui->label_7, ui->label_8, ui->label_9 });
+    slotsOfPlayersList.push_back({ ui->label_10, ui->label_11, ui->label_12 });
+    slotsOfPlayersList.push_back({ ui->label_13, ui->label_14, ui->label_15 });
+    slotsOfPlayersList.push_back({ ui->label_16, ui->label_17, ui->label_18 });
+    slotsOfPlayersList.push_back({ ui->label_19, ui->label_20, ui->label_21 });
+    slotsOfPlayersList.push_back({ ui->label_22, ui->label_23, ui->label_24 });
+    slotsOfPlayersList.push_back({ ui->label_25, ui->label_26, ui->label_27 });
+    slotsOfPlayersList.push_back({ ui->label_28, ui->label_29, ui->label_30 });
+    slotsOfPlayersList.push_back({ ui->label_31, ui->label_32, ui->label_33 });
+    slotsOfPlayersList.push_back({ ui->label_34, ui->label_35, ui->label_36 });
+    slotsOfPlayersList.push_back({ ui->label_37, ui->label_38, ui->label_39 });
+    slotsOfPlayersList.push_back({ ui->label_40, ui->label_41, ui->label_42 });
+    slotsOfPlayersList.push_back({ ui->label_43, ui->label_44, ui->label_45 });
+    slotsOfPlayersList.push_back({ ui->label_46, ui->label_47, ui->label_48 });
+    slotsOfPlayersList.push_back({ ui->label_49, ui->label_50, ui->label_51 });
+    slotsOfPlayersList.push_back({ ui->label_52, ui->label_53, ui->label_54 });
+    slotsOfPlayersList.push_back({ ui->label_55, ui->label_56, ui->label_57 });
+    slotsOfPlayersList.push_back({ ui->label_58, ui->label_59, ui->label_60 });
 
     // Display properties onto UI
+    for (int i = 0; i < numOfSlots; i++) {
+        for (int j = 0; j < 3; j++) {
+            slotsOfPlayersList[i][j]->hide();
+        }
+    }
+
     ui->noMoneyOkButton->hide();
     ui->textBuyQuestion->hide();
     ui->pushYes->hide();
@@ -64,7 +91,6 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->player1Text->hide();
     ui->player2Text->hide();
     ui->player3Text->hide();
-    ui->player4Text->hide();
     ui->rollResult->setStyleSheet("background-color: white;");
     ui->rollResult->hide();
     slotsList[0]->setText("Start");
@@ -97,14 +123,21 @@ Monopoly_Game::~Monopoly_Game() {
     }
 
     // Delete player text boxes
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
         delete playerTextboxList[i];
+    }
+
+    // Delete player labels
+    for (int i = 0; i < numOfSlots; i++) {
+        for (int j = 0; j < 3; j++) {
+            delete slotsOfPlayersList[i][j];
+        }
     }
 }
 
 // Before game begins
 void Monopoly_Game::on_inputGo_clicked() {
-    std::string listOfColors[] = {"blue", "red", "green", "orange"};
+    std::string listOfColors[] = {"blue", "orange", "green"};
 
     ui->inputGo->hide();
     ui->inputSelection->hide();
@@ -149,8 +182,7 @@ void Monopoly_Game::on_rollButton_clicked() {
 
     // Reveal player on board
     int index = board.search(currentPlayer->position->data);
-    QString str = slotsList[index]->toPlainText() + "\n " + QString::fromStdString(currentPlayer->name);
-    slotsList[index]->setText(str);
+    slotsOfPlayersList[index][currentPlayerIndex]->show();
 
     if (currentPlayer->position->data.isBought() || currentPlayer->position->data.isEqual(Property("Start", 0))) {
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;

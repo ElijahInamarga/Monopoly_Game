@@ -32,6 +32,7 @@ private:
     vector<QTextBrowser*> slotsList;
     vector<Player*> playerList;
     vector<QTextBrowser*> playerTextboxList;
+    vector<vector<QLabel*>> slotsOfPlayersList;
     Player* currentPlayer;
 
 private slots:
