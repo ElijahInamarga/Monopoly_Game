@@ -16,13 +16,13 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     propertyList.push_back(new Property("University", 2000));
     propertyList.push_back(new Property("Bank", 800));
     propertyList.push_back(new Property("Airport", 1800));
-    propertyList.push_back(new Property("Store", 450));
+    propertyList.push_back(new Property("Book Store", 450));
     propertyList.push_back(new Property("Dealership", 1250));
     propertyList.push_back(new Property("Mega Mall", 2150));
     propertyList.push_back(new Property("Spa", 550));
     propertyList.push_back(new Property("Computer Store", 450));
     propertyList.push_back(new Property("Taco Shop", 340));
-    propertyList.push_back(new Property("Itallian Restaurant", 325));
+    propertyList.push_back(new Property("Sushi Restaurant", 325));
     propertyList.push_back(new Property("Mall", 1550));
     propertyList.push_back(new Property("Grocery Store", 500));
 
@@ -145,6 +145,18 @@ void Monopoly_Game::on_inputGo_clicked() {
 
     // Initialize list of players and reveal appropriate player text boxes
     numOfPlayers = (ui->inputSelection->currentIndex()) + 1;
+
+    // Reveal appropriate players on the start property
+    switch (numOfPlayers) {
+    case 3:
+        slotsOfPlayersList[0][2]->show();
+    case 2:
+        slotsOfPlayersList[0][1]->show();
+    case 1:
+        slotsOfPlayersList[0][0]->show();
+        break;
+    }
+
     for(int i = 0; i < numOfPlayers; i++) {
         std::string str = "Player " + std::to_string(i + 1);
         playerList.push_back(new Player(str, listOfColors[i], board.getHeadNode()));
@@ -180,8 +192,11 @@ void Monopoly_Game::on_rollButton_clicked() {
         currentPlayer->position = currentPlayer->position->nextNode;
     }
 
-    // Reveal player on board
+    // Reveals and hides players on board 
     int index = board.search(currentPlayer->position->data);
+    for (int i = 0; i < numOfSlots; i++) {
+        slotsOfPlayersList[i][currentPlayerIndex]->hide();
+    }
     slotsOfPlayersList[index][currentPlayerIndex]->show();
 
     if (currentPlayer->position->data.isBought() || currentPlayer->position->data.isEqual(Property("Start", 0))) {
@@ -200,7 +215,7 @@ void Monopoly_Game::on_rollButton_clicked() {
         ui->playerRollText->show();
         ui->rollButton->show();
     } else {
-        ui->textBuyQuestion->setText(QString::fromStdString(currentPlayer->name) + ", would you lik e to buy: \n" +
+        ui->textBuyQuestion->setText(QString::fromStdString(currentPlayer->name) + ", would you like to buy: \n" +
             QString::fromStdString(currentPlayer->position->data.getName()) + " for $" +
             QString::number(currentPlayer->position->data.getValue()));
         ui->textBuyQuestion->show();
