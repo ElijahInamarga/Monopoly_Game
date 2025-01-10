@@ -152,7 +152,7 @@ void Monopoly_Game::on_rollButton_clicked() {
     QString str = slotsList[index]->toPlainText() + "\n " + QString::fromStdString(currentPlayer->name);
     slotsList[index]->setText(str);
 
-    if (currentPlayer->position->data.isBought()) {
+    if (currentPlayer->position->data.isBought() || currentPlayer->position->data.isEqual(Property("Start", 0))) {
         currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
         currentPlayer = playerList[currentPlayerIndex];
 
@@ -168,7 +168,7 @@ void Monopoly_Game::on_rollButton_clicked() {
         ui->playerRollText->show();
         ui->rollButton->show();
     } else {
-        ui->textBuyQuestion->setText(QString::fromStdString(currentPlayer->name) + ", would you like to buy: \n" +
+        ui->textBuyQuestion->setText(QString::fromStdString(currentPlayer->name) + ", would you lik e to buy: \n" +
             QString::fromStdString(currentPlayer->position->data.getName()) + " for $" +
             QString::number(currentPlayer->position->data.getValue()));
         ui->textBuyQuestion->show();
