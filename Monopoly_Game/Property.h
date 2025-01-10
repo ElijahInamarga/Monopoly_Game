@@ -8,15 +8,19 @@ class Property {
 private:
     string propertyName;
     int value;
+    int penalty;
     bool bought;
+
 public:
     Property();
-    Property(string propertyName, int value);
+    Property(std::string propertyName);
+    Property(string propertyName, int value, int penalty);
     bool isEqual(Property other) const;
     void print() const;
     string getName();
     int getValue();
     bool isBought();
     void setBought();
+    int getPenalty();
 };
 

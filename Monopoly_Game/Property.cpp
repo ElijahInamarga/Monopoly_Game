@@ -3,12 +3,22 @@
 Property::Property() {
     this->propertyName = "NULL";
     this->value = NULL;
+    this->bought = false;
+    this->penalty = NULL;
 }
 
-Property::Property(string propertyName, int value) {
+Property::Property(std::string propertyName) {
+    this->propertyName = propertyName;
+    this->value = 0;
+    this->bought = false;
+    this->penalty = 0;
+}
+
+Property::Property(string propertyName, int value, int penalty) {
     this->propertyName = propertyName;
     this->value = value;
     this->bought = false;
+    this->penalty = penalty;
 }
 
 bool Property::isEqual(Property other) const {
@@ -37,4 +47,8 @@ bool Property::isBought() {
 
 void Property::setBought() {
     this->bought = true;
+}
+
+int Property::getPenalty() {
+    return this->penalty;
 }
