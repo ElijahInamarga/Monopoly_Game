@@ -77,10 +77,28 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
     // Set up initial UI
     for (int i = 0; i < NUM_OF_SLOTS; i++) {
-        for (int j = 0; j < 3; j++) {
-            possiblePlayerLocationsList[i][j]->hide();
-        }
+        // Player 1
+        QPalette palette = possiblePlayerLocationsList[i][0]->palette();
+        palette.setColor(possiblePlayerLocationsList[i][0]->backgroundRole(), Qt::cyan);
+        palette.setColor(possiblePlayerLocationsList[i][0]->foregroundRole(), Qt::cyan);
+        possiblePlayerLocationsList[i][0]->setPalette(palette);
+        possiblePlayerLocationsList[i][0]->hide();
+
+        // Player 2
+        palette = possiblePlayerLocationsList[i][1]->palette();
+        palette.setColor(possiblePlayerLocationsList[i][1]->backgroundRole(), Qt::yellow);
+        palette.setColor(possiblePlayerLocationsList[i][1]->foregroundRole(), Qt::yellow);
+        possiblePlayerLocationsList[i][1]->setPalette(palette);
+        possiblePlayerLocationsList[i][1]->hide();
+
+        // Player 3
+        palette = possiblePlayerLocationsList[i][2]->palette();
+        palette.setColor(possiblePlayerLocationsList[i][2]->backgroundRole(), Qt::green);
+        palette.setColor(possiblePlayerLocationsList[i][2]->foregroundRole(), Qt::green);
+        possiblePlayerLocationsList[i][2]->setPalette(palette);
+        possiblePlayerLocationsList[i][2]->hide();
     }
+
     ui->noMoneyOkButton->hide();
     ui->textBuyQuestion->hide();
     ui->pushYes->hide();
@@ -91,7 +109,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->player2Text->hide();
     ui->player3Text->hide();
     ui->rollResult->hide();
-    slotsList[0]->setText("Start");
+    slotsList[0]->setText("Start \nBonus: $" + QString::number(START_BONUS));
 
     for (int i = 1; i < NUM_OF_PROPERTIES; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
@@ -193,7 +211,7 @@ void Monopoly_Game::on_rollButton_clicked() {
     for (int i = 0; i < randomValue; i++) {
         currentPlayer->position = currentPlayer->position->nextNode;
         if (currentPlayer->position->data.isEqual(Property("Start"))) {
-            currentPlayer->budget += 150;
+            currentPlayer->budget += START_BONUS;
 
             // Update player text box
             QString playerName = QString::fromStdString(currentPlayer->name);
