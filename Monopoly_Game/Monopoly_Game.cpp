@@ -96,7 +96,8 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     for (int i = 1; i < NUM_OF_PROPERTIES; i++) {
         QString propertyName = QString::fromStdString(propertyList[i]->getName());
         QString propertyValue = QString::number(propertyList[i]->getValue());
-        QString str = propertyName + "\n\nPrice: $" + propertyValue;
+        QString penalty = QString::number(propertyList[i]->getPenalty());
+        QString str = propertyName + "\nRent: $" + penalty + "\nPrice: $" + propertyValue;
         slotsList[i]->setText(str);
     }
 
