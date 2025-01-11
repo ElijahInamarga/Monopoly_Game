@@ -6,25 +6,25 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
 
     // Initialize list of properties
     propertyList.push_back(new Property("Start"));
-    propertyList.push_back(new Property("Hotel", 1000, 100));
-    propertyList.push_back(new Property("Villa", 700, 70));
-    propertyList.push_back(new Property("Park", 600, 60));
-    propertyList.push_back(new Property("House", 300, 30));
-    propertyList.push_back(new Property("School", 1500, 150));
-    propertyList.push_back(new Property("Mansion", 1000, 100));
-    propertyList.push_back(new Property("Apartment", 400, 40));
-    propertyList.push_back(new Property("University", 2000, 200));
-    propertyList.push_back(new Property("Bank", 800, 80));
-    propertyList.push_back(new Property("Airport", 1800, 180));
-    propertyList.push_back(new Property("Book Store", 450, 45));
-    propertyList.push_back(new Property("Dealership", 1250, 125));
-    propertyList.push_back(new Property("Mega Mall", 2150, 215));
-    propertyList.push_back(new Property("Spa", 550, 55));
-    propertyList.push_back(new Property("Computer Store", 450, 45));
-    propertyList.push_back(new Property("Taco Shop", 340, 35));
-    propertyList.push_back(new Property("Sushi Restaurant", 325, 30));
-    propertyList.push_back(new Property("Mall", 1550, 155));
-    propertyList.push_back(new Property("Grocery Store", 500, 50));
+    propertyList.push_back(new Property("Hotel", 1000, 400));
+    propertyList.push_back(new Property("Villa", 700, 280));
+    propertyList.push_back(new Property("Park", 600, 240));
+    propertyList.push_back(new Property("House", 300, 150));
+    propertyList.push_back(new Property("School", 1500, 600));
+    propertyList.push_back(new Property("Mansion", 1000, 450));
+    propertyList.push_back(new Property("Apartment", 400, 160));
+    propertyList.push_back(new Property("University", 2000, 800));
+    propertyList.push_back(new Property("Bank", 800, 320));
+    propertyList.push_back(new Property("Airport", 1800, 740));
+    propertyList.push_back(new Property("Book Store", 450, 200));
+    propertyList.push_back(new Property("Dealership", 1250, 500));
+    propertyList.push_back(new Property("Mega Mall", 2150, 1000));
+    propertyList.push_back(new Property("Spa", 550, 250));
+    propertyList.push_back(new Property("Computer Store", 450, 210));
+    propertyList.push_back(new Property("Taco Shop", 340, 150));
+    propertyList.push_back(new Property("Sushi Restaurant", 325, 140));
+    propertyList.push_back(new Property("Mall", 1550, 625));
+    propertyList.push_back(new Property("Grocery Store", 500, 325));
 
     // Initialize list of UI elements
     slotsList.push_back(ui->text1);
@@ -192,14 +192,14 @@ void Monopoly_Game::on_rollButton_clicked() {
     for (int i = 0; i < randomValue; i++) {
         currentPlayer->position = currentPlayer->position->nextNode;
         if (currentPlayer->position->data.isEqual(Property("Start"))) {
-            currentPlayer->budget += 200;
+            currentPlayer->budget += 150;
 
             // Update player text box
             QString playerName = QString::fromStdString(currentPlayer->name);
             QString playerBudget = QString::number(currentPlayer->budget);
             QString currentPlayerProperties = "";
             for (int i = 0; i < currentPlayer->playerProperties.size(); i++) {
-                currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
+                currentPlayerProperties += " - " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
             }
             playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
         }
@@ -235,7 +235,7 @@ void Monopoly_Game::on_rollButton_clicked() {
         QString playerBudget = QString::number(currentPlayer->budget);
         QString currentPlayerProperties = "";
         for (int i = 0; i < currentPlayer->playerProperties.size(); i++) {
-            currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
+            currentPlayerProperties += " - " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
         }
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
 
@@ -245,7 +245,7 @@ void Monopoly_Game::on_rollButton_clicked() {
         playerBudget = QString::number(playerList[currentPlayer->position->data.getOwnerIndex()]->budget);
         currentPlayerProperties = "";
         for (int i = 0; i < playerList[currentPlayer->position->data.getOwnerIndex()]->playerProperties.size(); i++) {
-            currentPlayerProperties += " " + QString::fromStdString(playerList[currentPlayer->position->data.getOwnerIndex()]->playerProperties[i]->getName()) + "\n";
+            currentPlayerProperties += " - " + QString::fromStdString(playerList[currentPlayer->position->data.getOwnerIndex()]->playerProperties[i]->getName()) + "\n";
         }
         playerTextboxList[currentPlayer->position->data.getOwnerIndex()]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
 
@@ -300,7 +300,7 @@ void Monopoly_Game::on_pushYes_clicked() {
         QString playerBudget = QString::number(currentPlayer->budget);
         QString currentPlayerProperties = "";
         for (int i = 0; i < currentPlayer->playerProperties.size(); i++) {
-            currentPlayerProperties += " " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
+            currentPlayerProperties += " - " + QString::fromStdString(currentPlayer->playerProperties[i]->getName()) + "\n";
         }
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
 

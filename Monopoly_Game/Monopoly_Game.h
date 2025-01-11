@@ -25,6 +25,7 @@ private:
     const int NUM_OF_PROPERTIES = 20; // Start counts as a property
     const int NUM_OF_SLOTS = 20;
     const int MAX_ROLL = 12;
+    const int SELL_BACK_RATE = 0;
 
     int numOfPlayers;
     int currentPlayerIndex;
