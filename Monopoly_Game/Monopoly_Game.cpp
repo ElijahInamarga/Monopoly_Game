@@ -112,6 +112,7 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
     ui->player2Text->hide();
     ui->player3Text->hide();
     ui->rollResult->hide();
+    slotsList[0]->setStyleSheet("background-color: brown;");
     slotsList[0]->setText("Start \nBonus: $" + QString::number(START_BONUS));
 
     for (int i = 1; i < NUM_OF_PROPERTIES; i++) {
@@ -330,15 +331,31 @@ void Monopoly_Game::on_pushYes_clicked() {
 
         // Check if all slots have been bought
         if (numOfPropertiesLeft <= 0) {
-            Player* winner = playerList[0];
+            vector<Player*> winners;
+            winners.push_back(playerList[0]);
             for (int i = 1; i < numOfPlayers; i++) {
-                if (playerList[i]->playerProperties.size() > winner->playerProperties.size())
-                    winner = playerList[i];
+                if (playerList[i]->playerProperties.size() == winners[0]->playerProperties.size())
+                    winners.push_back(playerList[i]);
+                if (playerList[i]->playerProperties.size() > winners[0]->playerProperties.size()) {
+                    winners.clear();
+                    winners.push_back(playerList[i]);
+                }
             }
 
-            QString winnerName = QString::fromStdString(winner->name);
-            ui->winnerTextBox->setText(winnerName + "     wins!");
-            ui->winnerTextBox->show();
+            if (winners.size() > 1) {
+                std::string winnerName = winners[0]->name;
+                for (int i = 1; i < winners.size(); i++) {
+                    winnerName += " and " + winners[i]->name;
+                }
+                ui->winnerTextBox->setFontPointSize(60);
+                ui->winnerTextBox->setText(QString::fromStdString(winnerName) + " wins!");
+                ui->winnerTextBox->show();
+            }
+            else {
+                QString winnerName = QString::fromStdString(winners[0]->name);
+                ui->winnerTextBox->setText(winnerName + " wins!");
+                ui->winnerTextBox->show();
+            }
         } else {
             // Move to next player
             currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
