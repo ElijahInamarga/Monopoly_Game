@@ -3,6 +3,7 @@
 Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::Monopoly_GameClass()) {
     ui->setupUi(this);
     currentPlayerIndex = 0;
+    numOfPropertiesLeft = NUM_OF_PROPERTIES - 1;
 
     // Initialize list of properties
     propertyList.push_back(new Property("Start"));
@@ -99,6 +100,8 @@ Monopoly_Game::Monopoly_Game(QWidget* parent) : QMainWindow(parent), ui(new Ui::
         possiblePlayerLocationsList[i][2]->hide();
     }
 
+    ui->winnerTextBox->setFontPointSize(72); 
+    ui->winnerTextBox->hide();
     ui->noMoneyOkButton->hide();
     ui->textBuyQuestion->hide();
     ui->pushYes->hide();
@@ -304,6 +307,8 @@ void Monopoly_Game::on_pushYes_clicked() {
         ui->noMoneyOkButton->show();
     }
     else {
+        numOfPropertiesLeft--;
+
         // Update player information
         currentPlayer->playerProperties.push_back(&currentPlayer->position->data);
         currentPlayer->budget -= currentPlayer->position->data.getValue();
@@ -323,16 +328,29 @@ void Monopoly_Game::on_pushYes_clicked() {
         }
         playerTextboxList[currentPlayerIndex]->setText(playerName + "\n\n$" + playerBudget + "\n\nProperties: \n" + currentPlayerProperties);
 
-        // Move to next player
-        currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
-        currentPlayer = playerList[currentPlayerIndex];
+        // Check if all slots have been bought
+        if (numOfPropertiesLeft <= 0) {
+            Player* winner = playerList[0];
+            for (int i = 1; i < numOfPlayers; i++) {
+                if (playerList[i]->playerProperties.size() > winner->playerProperties.size())
+                    winner = playerList[i];
+            }
 
-        QString str = QString::fromStdString(currentPlayer->name + "'s turn to roll");
-        ui->textBuyQuestion->hide();
-        ui->rollResult->hide();
-        ui->playerRollText->setText(str);
-        ui->playerRollText->show();
-        ui->rollButton->show();
+            QString winnerName = QString::fromStdString(winner->name);
+            ui->winnerTextBox->setText(winnerName + "     wins!");
+            ui->winnerTextBox->show();
+        } else {
+            // Move to next player
+            currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers;
+            currentPlayer = playerList[currentPlayerIndex];
+
+            QString str = QString::fromStdString(currentPlayer->name + "'s turn to roll");
+            ui->textBuyQuestion->hide();
+            ui->rollResult->hide();
+            ui->playerRollText->setText(str);
+            ui->playerRollText->show();
+            ui->rollButton->show();
+        }
     }
 }
 

@@ -27,6 +27,7 @@ private:
     const int MAX_ROLL = 12;
     const int START_BONUS = 250;
 
+    int numOfPropertiesLeft;
     int numOfPlayers;
     int currentPlayerIndex;
     Ui::Monopoly_GameClass* ui;
